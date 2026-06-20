@@ -1,0 +1,196 @@
+---
+title: "Contacts API — List and Retrieve Prospect Contact Records"
+sidebarTitle: "Contacts"
+description: "Use the Revont Contacts API to list all known prospects or fetch a single contact by ID, including their full call history and engagement details."
+---
+
+Contacts in Revont represent the prospects your team speaks with. Revont creates a contact record automatically the first time it identifies a new prospect on a call — typically by reading the email address from the calendar invite. Each contact accumulates a history of all calls where they appeared, making it easy to track engagement over time.
+
+Use the Contacts API to list all known prospects, look up individual contact records, and retrieve associated call history. This is particularly useful for syncing Revont's contact data with your CRM or building per-account reporting.
+
+---
+
+## List all contacts
+
+```
+GET /contacts
+```
+
+Returns a paginated list of all contacts in your workspace, ordered by creation time descending.
+
+```bash cURL
+curl "https://api.revont.ai/v1/contacts?limit=20" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Query Parameters
+
+<ParamField query="limit" type="integer">
+  Number of contacts to return per page. Maximum `100`, default `20`.
+</ParamField>
+
+<ParamField query="cursor" type="string">
+  Pagination cursor returned as `next_cursor` in a previous response. Omit to start from the beginning.
+</ParamField>
+
+<ParamField query="email" type="string">
+  Filter results to the contact with this exact email address. Returns at most one result.
+</ParamField>
+
+### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "contact_01HX7ABCDE",
+      "email": "jane.doe@acme.com",
+      "name": "Jane Doe",
+      "company": "Acme Corp",
+      "call_count": 4,
+      "last_call_at": "2024-03-15T14:32:00Z",
+      "created_at": "2024-01-08T09:14:00Z"
+    },
+    {
+      "id": "contact_01HX7ABCDF",
+      "email": "bob.smith@globex.com",
+      "name": "Bob Smith",
+      "company": "Globex",
+      "call_count": 1,
+      "last_call_at": "2024-03-14T10:15:00Z",
+      "created_at": "2024-03-14T10:15:00Z"
+    }
+  ],
+  "next_cursor": "cur_01HX7GHIJ",
+  "has_more": true
+}
+```
+
+### Response Fields
+
+<ResponseField name="data" type="array">
+  Array of contact objects.
+
+  <Expandable title="Contact object fields">
+    <ResponseField name="id" type="string">
+      Unique identifier for the contact.
+    </ResponseField>
+    <ResponseField name="email" type="string">
+      The prospect's email address.
+    </ResponseField>
+    <ResponseField name="name" type="string">
+      The prospect's full name, if available.
+    </ResponseField>
+    <ResponseField name="company" type="string">
+      The prospect's company name, if available.
+    </ResponseField>
+    <ResponseField name="call_count" type="integer">
+      Total number of calls in your workspace where this contact appeared.
+    </ResponseField>
+    <ResponseField name="last_call_at" type="string">
+      ISO 8601 timestamp of the most recent call involving this contact.
+    </ResponseField>
+    <ResponseField name="created_at" type="string">
+      ISO 8601 timestamp indicating when this contact was first created in Revont.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="next_cursor" type="string | null">
+  Opaque cursor to pass as `cursor` in your next request. `null` when there are no further pages.
+</ResponseField>
+
+<ResponseField name="has_more" type="boolean">
+  `true` if additional contacts exist beyond the current page.
+</ResponseField>
+
+---
+
+## Retrieve a contact
+
+```
+GET /contacts/{id}
+```
+
+Returns a single contact record and their full call history within your workspace.
+
+```bash cURL
+curl "https://api.revont.ai/v1/contacts/contact_01HX7ABCDE" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique ID of the contact to retrieve.
+</ParamField>
+
+### Response
+
+```json
+{
+  "id": "contact_01HX7ABCDE",
+  "email": "jane.doe@acme.com",
+  "name": "Jane Doe",
+  "company": "Acme Corp",
+  "call_count": 4,
+  "last_call_at": "2024-03-15T14:32:00Z",
+  "created_at": "2024-01-08T09:14:00Z",
+  "calls": [
+    {
+      "id": "call_01HX4BQZPK8J2NFRT3WY",
+      "created_at": "2024-03-15T14:32:00Z",
+      "duration_seconds": 1842,
+      "coaching_score": 78,
+      "outcome": "won"
+    },
+    {
+      "id": "call_01HX2MNPQRS",
+      "created_at": "2024-02-28T11:00:00Z",
+      "duration_seconds": 2103,
+      "coaching_score": 65,
+      "outcome": "follow_up"
+    },
+    {
+      "id": "call_01HX1ABCXYZ",
+      "created_at": "2024-02-05T16:45:00Z",
+      "duration_seconds": 1205,
+      "coaching_score": 70,
+      "outcome": "follow_up"
+    },
+    {
+      "id": "call_01HX0DEFGHI",
+      "created_at": "2024-01-08T09:14:00Z",
+      "duration_seconds": 876,
+      "coaching_score": 55,
+      "outcome": "no_outcome"
+    }
+  ]
+}
+```
+
+### Response Fields
+
+The response includes all fields from the list endpoint, plus:
+
+<ResponseField name="calls" type="array">
+  Abbreviated call history for this contact, ordered by `created_at` descending.
+
+  <Expandable title="Call history entry fields">
+    <ResponseField name="id" type="string">
+      Unique identifier of the call. Pass this to the [Calls](/api/calls) or [Summaries](/api/summaries) endpoints to retrieve full details.
+    </ResponseField>
+    <ResponseField name="created_at" type="string">
+      ISO 8601 timestamp indicating when the call was recorded.
+    </ResponseField>
+    <ResponseField name="duration_seconds" type="integer">
+      Total call duration in seconds.
+    </ResponseField>
+    <ResponseField name="coaching_score" type="integer">
+      AI-generated coaching score for this call, from 0 to 100.
+    </ResponseField>
+    <ResponseField name="outcome" type="string">
+      Outcome of the call. One of `won`, `lost`, `follow_up`, or `no_outcome`.
+    </ResponseField>
+  </Expandable>
+</ResponseField>

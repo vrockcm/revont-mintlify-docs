@@ -1,0 +1,56 @@
+---
+title: "Set Up Your Revont Workspace: Settings and Preferences"
+sidebarTitle: "Workspace Setup"
+description: "Configure your Revont workspace name, timezone, call recording mode, data retention policy, and branding before you invite your sales team."
+---
+
+Workspace setup is the first thing you'll complete as a Revont admin. These settings control how your workspace is identified, how calls are recorded and stored, and how Revont appears to your team and external recipients. Getting these right before you invite your reps ensures everyone starts with a consistent, compliant experience.
+
+## General settings
+
+Go to **Settings → General** to configure the foundational details of your workspace.
+
+- **Workspace name** — This name appears in outbound emails, exported call summaries, and shared reports. Use the name your team and customers will recognize, such as your company name or the name of the specific sales team using Revont.
+- **Default timezone** — All call timestamps, scheduled reports, and analytics are displayed in this timezone. Set it to the timezone where the majority of your team operates. Individual users can override this in their own profile settings.
+- **Language** — Sets the default language for the Revont interface and AI-generated summaries. Revont will use this language when generating call notes and action items unless a rep's profile specifies otherwise.
+
+## Call recording
+
+Go to **Settings → Calls** to choose how Revont captures your calls. You have three recording modes:
+
+- **Full recording** — Revont records and stores both the audio and a full transcript of every call. This gives you the richest data for coaching, QA, and analytics.
+- **Transcript only** — Revont captures a full text transcript but does not store audio. Useful if your policy restricts audio retention or you want to reduce storage usage.
+- **Real-time guidance only** — Revont listens and surfaces in-call coaching, but nothing is stored after the call ends. No audio or transcript is saved. This mode is appropriate for teams with strict data minimization requirements.
+
+You can also configure **participant recording notification**. When enabled, Revont plays an audio prompt at the start of each call informing all parties that the call is being recorded. This setting is required in many jurisdictions — see the note below.
+
+<Note>
+  Recording notification requirements vary by jurisdiction. When you enable participant notifications, Revont automatically plays an audio prompt at the start of each call. Consult your legal team to determine whether this is required in the regions where your reps operate.
+</Note>
+
+## Data retention
+
+Under **Settings → Calls → Data Retention**, set how long Revont stores call recordings and transcripts before permanently deleting them. The available retention windows are:
+
+| Retention period | Best for |
+|---|---|
+| 30 days | Teams with strict data minimization policies |
+| 90 days | Standard sales coaching and QA cycles |
+| 365 days | Long-cycle enterprise deals and compliance requirements |
+| Custom | Specific regulatory or contractual obligations |
+
+Once a call passes the retention window, it is **permanently and irreversibly deleted** — including the audio, transcript, AI summary, and associated action items.
+
+<Warning>
+  Data retention settings cannot be shortened retroactively. If you reduce your retention window — for example, from 365 days to 90 days — the change applies only to calls recorded after the update. Existing recordings are not affected and will be retained until their original expiry date.
+</Warning>
+
+## Branding
+
+Go to **Settings → Branding** to upload your workspace logo. Your logo appears in:
+
+- Shared call summaries sent to external stakeholders
+- Scheduled email reports delivered to managers and reps
+- Exported call documents in PDF format
+
+Upload a PNG or SVG file at least 200×200 px for the best results. Revont automatically resizes the logo for different contexts. If no logo is uploaded, shared summaries and reports display the Revont wordmark by default.

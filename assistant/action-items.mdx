@@ -1,0 +1,57 @@
+---
+title: "Automatic Action Items Extracted from Every Sales Call"
+sidebarTitle: "Action Items"
+description: "Revont extracts follow-up tasks and commitments from call transcripts and syncs them to your CRM or task manager automatically after every call."
+---
+
+Every sales call generates commitments — things you promised to send, meetings you agreed to schedule, questions you said you'd follow up on. Revont automatically pulls these out of your call transcript, organizes them by owner, and syncs them to wherever you track your work. Nothing you committed to on a call gets lost because you forgot to write it down.
+
+## How action items are detected
+
+After a call ends, Revont scans the full transcript for language that signals a commitment or a follow-up task. Phrases like **"I'll send you"**, **"can you share"**, **"let's schedule"**, and **"I'll follow up"** are flagged and extracted as discrete action items.
+
+Each item is attributed to the speaker who made the commitment — so you can immediately see which tasks belong to you and which belong to the prospect. Revont also infers a suggested due date based on any timing language in the conversation (e.g., "by end of week" or "before our next call").
+
+## Reviewing action items
+
+To review the action items from a call:
+
+1. Go to **Calls** in the sidebar and select the call.
+2. Click the **Action Items** tab.
+
+Each action item displays:
+
+- **Task description** — The extracted commitment, written as a clear action
+- **Owner** — Whether the task belongs to you (the rep) or the prospect
+- **Suggested due date** — Inferred from timing language in the transcript
+
+From this view, you can **check off** completed items, **edit** the description to add clarity, or **delete** any false positives that Revont flagged incorrectly.
+
+## Syncing to your CRM
+
+If you've connected Salesforce or HubSpot, Revont automatically creates tasks on the associated contact or opportunity record for every action item attributed to you.
+
+To configure your CRM sync:
+
+1. Go to **Settings → Integrations → CRM**.
+2. Select your CRM and authenticate.
+3. Map Revont's action item fields (task description, due date, owner) to the corresponding fields in your CRM's task schema.
+
+Once configured, tasks appear in your CRM within seconds of the action items being finalized — no manual entry required.
+
+## Syncing to task managers
+
+Prefer to track your work in a dedicated task manager? Connect **Notion**, **Asana**, or **Linear** from **Settings → Integrations → Task Managers**. After each call, Revont creates a task in your chosen tool for every action item attributed to you, keeping your call commitments in sync with your existing workflow.
+
+## Notifications
+
+Revont sends a post-call email digest summarizing your action items from the call so you always have a record in your inbox.
+
+To configure notification preferences:
+- Go to **Settings → Notifications**.
+- Set your preferred delivery method: **email** or **Slack**.
+- Choose your frequency: receive a digest after every call, or get a daily rollup of all open action items.
+
+<Note>
+  Action items attributed to the prospect are synced as tasks for **you** to follow up on — Revont doesn't contact, message, or notify your prospects in any way.
+</Note>

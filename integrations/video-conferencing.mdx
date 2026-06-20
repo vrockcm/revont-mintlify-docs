@@ -1,0 +1,75 @@
+---
+title: "Connect Zoom, Google Meet, or Microsoft Teams to Revont"
+sidebarTitle: "Video Conferencing"
+description: "Integrate Revont with Zoom, Google Meet, or Microsoft Teams so the AI assistant can join calls, listen in real time, and generate summaries."
+---
+
+Revont integrates directly with the major video conferencing platforms so its AI assistant can join your live sales calls, surface real-time guidance in the sidebar, and generate summaries the moment a call ends. Revont joins each meeting as a visible bot participant — no browser extension or screen-share required.
+
+## Supported platforms
+
+Revont supports **Zoom**, **Google Meet**, and **Microsoft Teams**. On all three platforms, Revont joins as an AI bot participant that is visible in the attendee list under the name **Revont AI**.
+
+## Connecting your platform
+
+<Tabs>
+  <Tab title="Zoom">
+    <Steps>
+      <Step title="Open the Zoom integration page">
+        Go to **Settings → Integrations → Video Conferencing → Zoom**.
+      </Step>
+      <Step title="Authorize the connection">
+        Click **Connect with Zoom** and sign in to your Zoom account to authorize. Revont creates a Zoom app connection that allows it to join meetings on your behalf.
+      </Step>
+      <Step title="Confirm the connection">
+        Once authorized, Revont can now join your Zoom meetings. The bot will appear in the meeting attendee list as **Revont AI**.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Google Meet">
+    <Steps>
+      <Step title="Open the Google Meet integration page">
+        Go to **Settings → Integrations → Video Conferencing → Google Meet**.
+      </Step>
+      <Step title="Check your calendar connection">
+        Google Meet integration is handled through your Google Calendar authorization. If you've already [connected Google Calendar](/integrations/calendar), Meet integration is enabled automatically — no additional steps are needed.
+      </Step>
+      <Step title="How Revont joins">
+        Revont extracts the Meet link from your calendar invite and joins the meeting at the scheduled start time. No separate Meet app authorization is required.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Microsoft Teams">
+    <Steps>
+      <Step title="Open the Microsoft Teams integration page">
+        Go to **Settings → Integrations → Video Conferencing → Microsoft Teams**.
+      </Step>
+      <Step title="Authorize the connection">
+        Click **Connect with Microsoft** and sign in with your Teams admin account to authorize.
+      </Step>
+      <Step title="IT admin approval (if required)">
+        Depending on your organization's policies, your IT admin may need to approve the Revont app in the **Microsoft Teams Admin Center** before the bot can join meetings. Ask your admin to allowlist the Revont app under **Teams apps → Manage apps**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Bot visibility
+
+The Revont AI bot is visible to all participants in the meeting attendee list. All participants can see that an AI assistant is present for the duration of the call.
+
+We recommend informing all participants that the call is being assisted by AI before or at the start of the meeting — particularly in jurisdictions where recording or monitoring laws require explicit consent from all parties. Revont does not manage consent notifications on your behalf.
+
+## Disabling Revont for a specific call
+
+If you don't want Revont to join a particular meeting, you can exclude it without changing your global settings:
+
+1. Open the **Upcoming Calls** list in the Revont sidebar.
+2. Find the meeting you want to exclude.
+3. Click **Don't Join** next to that meeting.
+
+Revont will skip that call and resume normal behavior for subsequent meetings.
+
+<Warning>
+  Some organizations have IT policies that restrict third-party bots from joining video calls. If Revont can't join a meeting, check with your IT team about allowlisting the Revont bot for your video conferencing platform.
+</Warning>

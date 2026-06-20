@@ -1,0 +1,107 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "luma",
+  "name": "Revont",
+  "description": "AI Call Assistant for Sales — real-time guidance, automatic summaries, and CRM sync for every call.",
+  "colors": {
+    "primary": "#ffffff",
+    "light": "#ffffff",
+    "dark": "#ffffff"
+  },
+  "favicon": "/favicon.ico",
+  "icons": {
+    "library": "lucide"
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs"
+  },
+  "contextual": {
+    "options": ["copy", "view", "assistant"]
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "core-concepts"
+            ]
+          },
+          {
+            "group": "Platform",
+            "pages": [
+              "platform/workspace-setup",
+              "platform/user-management",
+              "platform/roles-permissions"
+            ]
+          },
+          {
+            "group": "AI Assistant",
+            "pages": [
+              "assistant/live-call-guidance",
+              "assistant/call-summaries",
+              "assistant/action-items",
+              "assistant/playbooks"
+            ]
+          },
+          {
+            "group": "Analytics",
+            "pages": [
+              "analytics/call-analytics",
+              "analytics/team-performance",
+              "analytics/dashboards"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/crm",
+              "integrations/calendar",
+              "integrations/video-conferencing",
+              "integrations/webhooks"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api/overview",
+              "api/authentication"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "api/calls",
+              "api/summaries",
+              "api/contacts",
+              "api/webhooks"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [],
+    "primary": {
+      "type": "button",
+      "label": "Go to App",
+      "href": "https://app.revont.ai"
+    }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/revontai",
+      "linkedin": "https://linkedin.com/company/revont"
+    }
+  }
+}

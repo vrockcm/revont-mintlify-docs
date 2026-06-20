@@ -1,0 +1,134 @@
+---
+title: Revont Documentation
+description: Everything you need to set up Revont, coach your sales team, and get the most out of AI-powered call assistance.
+mode: frame
+---
+
+<div data-product-guide-index className="flex w-full flex-col gap-8 max-w-5xl mx-auto px-4 md:px-8 lg:px-12 py-10 lg:gap-14 lg:py-16">
+  <div className="flex max-w-[540px] flex-col gap-2 self-center text-center">
+    <h1 className="text-[30px] font-medium leading-9 tracking-tight text-gray-900 dark:text-gray-50">
+      Revont Documentation
+    </h1>
+    <p className="text-balance text-base leading-relaxed tracking-tight text-gray-600 dark:text-gray-400">
+      Everything you need to set up your AI call assistant, coach your sales team in real time, and automate your post-call workflow.
+    </p>
+  </div>
+
+  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <Card
+      title={<span className="product-guide-feature-card-title">AI Assistant</span>}
+      icon="mic"
+      href="/assistant/live-call-guidance"
+      className="product-guide-feature-card"
+      size={64}
+    >
+      <span className="product-guide-feature-card-description">Real-time guidance, summaries, and action items on every call.</span>
+    </Card>
+
+    <a
+      href="/analytics/call-analytics"
+      className="rounded-2xl flex flex-col gap-4 border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+    >
+      <Icon icon="chart-column" color="rgb(var(--primary))" size={18} className="shrink-0" />
+      <div className="flex flex-col gap-1">
+        <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Analytics</span>
+        <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          Track call performance, coaching scores, and team trends.
+        </span>
+      </div>
+    </a>
+    <a
+      href="/integrations/crm"
+      className="rounded-2xl flex flex-col gap-4 border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+    >
+      <Icon icon="code-xml" color="rgb(var(--primary))" size={18} className="shrink-0" />
+      <div className="flex flex-col gap-1">
+        <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Integrations</span>
+        <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          Connect your CRM, calendar, and video conferencing tools.
+        </span>
+      </div>
+    </a>
+  </div>
+
+  <hr className="border-0 border-t border-border" />
+
+  <div className="flex flex-col gap-4">
+    <h2 className="font-serif text-xl font-medium leading-normal text-gray-900 dark:text-gray-50">Common tasks</h2>
+
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <a
+        href="/platform/user-management"
+        className="rounded-2xl flex flex-col gap-4 border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="users" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Manage your team</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Invite reps, assign roles, and control workspace access.
+          </span>
+        </div>
+      </a>
+      <a
+        href="/assistant/call-summaries"
+        className="rounded-2xl flex flex-col gap-4 border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="file-text" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Review call summaries</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            AI-generated recaps with key moments, objections, and next steps.
+          </span>
+        </div>
+      </a>
+      <a
+        href="/integrations/crm"
+        className="rounded-2xl flex flex-col gap-4 border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="building-2" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Connect your CRM</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Auto-sync notes and action items to Salesforce or HubSpot.
+          </span>
+        </div>
+      </a>
+      <a
+        href="/analytics/dashboards"
+        className="rounded-2xl flex flex-col gap-4 border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="layout-dashboard" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Build a dashboard</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Visualize call trends and coaching scores for your team.
+          </span>
+        </div>
+      </a>
+      <a
+        href="/integrations/webhooks"
+        className="rounded-2xl flex flex-col gap-4 border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="webhook" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Set up a webhook</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Subscribe to call events and push data to any endpoint.
+          </span>
+        </div>
+      </a>
+      <a
+        href="/assistant/playbooks"
+        className="rounded-2xl flex flex-col gap-4 border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="book-open" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Create a playbook</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Define talk tracks and objection responses your AI delivers live.
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

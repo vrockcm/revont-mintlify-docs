@@ -1,0 +1,71 @@
+---
+title: "Connect Your Calendar to Revont for Auto-Join Calls"
+sidebarTitle: "Calendar"
+description: "Connect Google Calendar or Outlook so Revont automatically detects upcoming calls and joins as your AI assistant without manual setup."
+---
+
+Connecting your calendar is the fastest way to get Revont working with zero friction. Once connected, Revont reads your upcoming meetings, detects which ones include a video call link, and either joins automatically when the call starts or prompts you beforehand — no manual session setup required for each call.
+
+## Supported calendars
+
+- **Google Calendar**
+- **Microsoft Outlook** (via Microsoft 365)
+
+## Connecting Google Calendar
+
+<Steps>
+  <Step title="Open the Google Calendar integration page">
+    Go to **Settings → Integrations → Calendar → Google Calendar**.
+  </Step>
+  <Step title="Start the authorization flow">
+    Click **Connect with Google**.
+  </Step>
+  <Step title="Grant calendar access">
+    Sign in with your Google account and grant calendar read access when prompted. Revont requests read-only access to your calendar events.
+  </Step>
+  <Step title="You're connected">
+    Revont will now scan your calendar for upcoming video calls and display them in the sidebar.
+  </Step>
+</Steps>
+
+## Connecting Outlook
+
+<Steps>
+  <Step title="Open the Outlook integration page">
+    Go to **Settings → Integrations → Calendar → Outlook**.
+  </Step>
+  <Step title="Start the authorization flow">
+    Click **Connect with Microsoft**.
+  </Step>
+  <Step title="Grant calendar access">
+    Sign in with your Microsoft 365 account and grant calendar access when prompted.
+  </Step>
+  <Step title="You're connected">
+    Revont will scan your calendar for upcoming calls and surface them in the sidebar.
+  </Step>
+</Steps>
+
+## How Revont uses your calendar
+
+Once your calendar is connected, Revont continuously monitors your upcoming meetings so it's always ready when your next call starts. Specifically, Revont:
+
+- **Detects meetings with video conferencing links** — Revont recognizes Zoom, Google Meet, and Microsoft Teams links embedded in calendar invites.
+- **Displays upcoming calls in the Revont sidebar** — You'll see a list of detected calls up to 24 hours ahead, so you can review and manage them before they start.
+- **Joins calls automatically when they start** — If [auto-join](#auto-join-settings) is enabled, Revont enters the meeting as soon as it begins.
+- **Associates call records with meeting attendees** — Revont uses the attendee list from the calendar invite to link the call record to the right contacts in your CRM.
+
+<Note>
+  Revont only reads calendar events — it never modifies, creates, or deletes calendar entries.
+</Note>
+
+## Auto-join settings
+
+Control how and when Revont joins detected calls. Go to **Settings → Calls → Auto-Join** to choose one of the following modes:
+
+| Mode | Behavior |
+|---|---|
+| **Always join** | Revont joins every call it detects as soon as it starts. |
+| **Ask before joining** | You receive a prompt 2 minutes before each call and can confirm or decline. |
+| **Never auto-join** | Revont does not join calls automatically. You manually start each session from the Revont app when you're ready. |
+
+You can also override the setting for individual calls. In the **Upcoming Calls** list in the Revont sidebar, click the options menu next to any meeting to skip or force-join that specific call regardless of your global setting.

@@ -1,0 +1,67 @@
+---
+title: "Invite and Manage Your Sales Team in Revont Workspace"
+sidebarTitle: "User Management"
+description: "Add reps and managers to your Revont workspace, assign roles, organize users into groups for scoped coaching, and offboard teammates cleanly."
+---
+
+User management lets you control who has access to your Revont workspace and what they can do once they're in. As an admin, you can invite new reps and managers, adjust roles as your team evolves, organize users into groups for scoped coaching and analytics, and cleanly offboard teammates who leave the team — all without losing the call history they built.
+
+## Inviting users
+
+<Steps>
+  <Step title="Open the invite dialog">
+    Go to **Settings → Users** and click **Invite User** in the top-right corner.
+  </Step>
+  <Step title="Enter the user's email address">
+    Type the email address of the person you want to add. You can enter multiple addresses separated by commas to send batch invitations.
+  </Step>
+  <Step title="Select a role">
+    Choose **Admin**, **Manager**, or **Rep** from the role dropdown. This determines what the user can access from the moment they sign in. See [Roles & Permissions](/platform/roles-permissions) for a full breakdown.
+  </Step>
+  <Step title="Assign to a group (optional)">
+    If your workspace uses groups, select one or more groups to assign the user to. You can also assign groups after the user has accepted their invitation.
+  </Step>
+  <Step title="Send the invitation">
+    Click **Send Invite**. The user receives an email with a secure sign-in link. The link expires after 72 hours — if it expires, you can resend the invitation from the Users list.
+  </Step>
+</Steps>
+
+<Note>
+  SSO users are provisioned automatically on their first login — they don't need to accept an email invitation. You can still pre-assign their role and group using their email address before they sign in, and those settings will apply as soon as their account is created.
+</Note>
+
+## Managing existing users
+
+From **Settings → Users**, you can take the following actions on any active user:
+
+- **Change role** — Click the user's current role and select a new one from the dropdown. The change takes effect immediately. The user does not need to sign out and back in.
+- **Reassign group** — Move a rep from one group to another, or add them to multiple groups if your structure requires it. Historical calls stay associated with the group they were recorded under.
+- **Suspend access** — Suspending a user immediately blocks them from signing in and using Revont. Their call recordings, summaries, action items, and analytics are fully preserved in the workspace. This is useful when a rep is on leave or during an offboarding review period. You can reinstate a suspended user at any time.
+
+## Groups
+
+Groups let you organize your reps by team, region, product line, or any other structure that matches how you run your sales org. A group can contain any number of reps and can be assigned one or more managers.
+
+Key behaviors to understand:
+
+- **Manager visibility** — Managers assigned to a group can view call recordings, transcripts, AI summaries, and analytics for every rep in that group. They cannot see calls from reps outside their groups unless they have an Admin role.
+- **Analytics scoping** — Dashboard analytics and leaderboards are filtered by group membership by default, making it easy for managers to focus on their team's performance.
+- **Multiple groups** — A rep can belong to more than one group. This is common for reps who cover multiple territories or product lines.
+
+To create a group, go to **Settings → Groups → New Group**, give it a name, and add members.
+
+<Tip>
+  Use groups to scope coaching and analytics — managers only see reps in their group by default. This keeps your coaching workflows focused and prevents managers from accidentally accessing calls outside their remit.
+</Tip>
+
+## Removing users
+
+To remove a user, go to **Settings → Users**, find the user in the list, click the actions menu (`···`), and select **Remove User**.
+
+Removing a user:
+
+- **Revokes access immediately** — The user is signed out of all active sessions and cannot sign back in.
+- **Preserves all call data** — Their call recordings, AI summaries, transcripts, and action items remain fully intact in the workspace. Other team members and managers can still access this history.
+- **Does not affect group assignments** — The call history remains associated with its original group for analytics continuity.
+
+If the departing rep owns action items or ongoing deals that need to be handed off, reassign those items before removing them. Once a user is removed, their action items remain visible in the workspace but are marked as unassigned until you manually reassign them.

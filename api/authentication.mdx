@@ -1,0 +1,87 @@
+---
+title: "API Key Authentication — Securing Revont API Requests"
+sidebarTitle: "Authentication"
+description: "Learn how to generate a Revont API key from workspace settings, choose the right scope, and include it as a Bearer token in every request."
+---
+
+The Revont API uses **API key authentication**. You generate a key from your workspace settings and include it as a Bearer token in the `Authorization` header of every request. There are no sessions, cookies, or OAuth flows — each request is independently authenticated using the key you provide.
+
+<Warning>
+  Treat API keys as secrets. Never commit them to version control, embed them in client-side code, or share them in public channels. If a key is compromised, delete it immediately from **Settings → API → API Keys** and issue a new one.
+</Warning>
+
+## Generating an API Key
+
+<Steps>
+  <Step title="Open your API key settings">
+    In your Revont workspace, navigate to **Settings → API → API Keys**.
+  </Step>
+  <Step title="Create a new key">
+    Click **New API Key** to open the key creation dialog.
+  </Step>
+  <Step title="Name the key and select a scope">
+    Give the key a descriptive name — for example, `Production integration` or `Analytics pipeline` — so you can identify it later. Then select a scope:
+
+    - **Read-only** — for integrations that only need to pull data
+    - **Read-write** — for integrations that also manage webhooks or other resources
+
+    See [API key scopes](#api-key-scopes) for the full breakdown of what each scope permits.
+  </Step>
+  <Step title="Copy your key">
+    Click **Create**. Copy the API key immediately and store it somewhere secure, such as a secrets manager or environment variable. **The full key is only shown once** — Revont stores only a hashed version after this point.
+  </Step>
+</Steps>
+
+## Using Your API Key
+
+Include your API key as a Bearer token in the `Authorization` header of every request. Replace `YOUR_API_KEY` with the key you generated.
+
+```bash cURL
+curl https://api.revont.ai/v1/calls \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+```python Python
+import requests
+
+headers = {"Authorization": "Bearer YOUR_API_KEY"}
+response = requests.get("https://api.revont.ai/v1/calls", headers=headers)
+print(response.json())
+```
+
+If you omit the header or provide an invalid key, the API returns `401 Unauthorized`:
+
+```json
+{
+  "error": {
+    "code": "unauthorized",
+    "message": "Missing or invalid API key."
+  }
+}
+```
+
+## API Key Scopes
+
+When you create a key, you choose between two scopes that control what the key can do:
+
+| Scope          | Description                                                                                                              |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Read-only**  | Can retrieve calls, summaries, action items, and contacts. Cannot create, update, or delete webhooks or other resources. |
+| **Read-write** | Full access — can retrieve and modify all resources, and manage webhooks (create, list, delete).                         |
+
+Use the most restrictive scope your integration needs. If you later need broader access, create a new key with the appropriate scope rather than upgrading an existing one.
+
+## Rotating Keys
+
+To rotate an API key without downtime, follow these steps:
+
+1. Generate a new key in **Settings → API → API Keys**.
+2. Update your integration's environment variables or secrets manager to use the new key.
+3. Verify your integration is working correctly with the new key.
+4. Delete the old key from **Settings → API → API Keys**.
+
+This approach ensures your integration stays authenticated throughout the rotation process.
+
+<Note>
+  API keys are workspace-scoped — they only provide access to data in the workspace where they were created. If your organization uses multiple Revont workspaces, you need a separate key for each.
+</Note>

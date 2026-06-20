@@ -1,0 +1,108 @@
+---
+title: "Revont REST API — Reference Overview and Conventions"
+sidebarTitle: "Overview"
+description: "Explore the Revont REST API: base URL, authentication, rate limits, and cursor pagination. Covers endpoints for calls, summaries, contacts, and webhooks."
+---
+
+The Revont REST API gives you programmatic access to everything inside your workspace — call records with full transcripts, AI-generated summaries, extracted action items, contact histories, and webhook registrations. You can use it to build custom dashboards, sync data to your CRM, trigger automations, or power any internal tooling your team needs.
+
+All API endpoints are served over HTTPS from a single base URL and return JSON responses.
+
+## Base URL
+
+Every request you make to the Revont API must be prefixed with the following base URL:
+
+```
+https://api.revont.ai/v1
+```
+
+For example, to list calls you would call `https://api.revont.ai/v1/calls`.
+
+## Authentication
+
+All requests require a valid API key passed as a Bearer token in the `Authorization` header. Requests without a valid key return `401 Unauthorized`.
+
+See [Authentication](/api/authentication) for instructions on generating a key and including it in your requests.
+
+## Rate Limits
+
+The number of requests you can make per minute depends on your Revont plan:
+
+| Plan         | Requests per minute |
+| ------------ | ------------------- |
+| Starter      | 100                 |
+| Professional | 500                 |
+| Enterprise   | Custom              |
+
+Every API response includes the following headers so you can track your current usage:
+
+| Header                  | Description                                                           |
+| ----------------------- | --------------------------------------------------------------------- |
+| `X-RateLimit-Limit`     | The maximum number of requests allowed in the current window          |
+| `X-RateLimit-Remaining` | The number of requests remaining in the current window                |
+| `X-RateLimit-Reset`     | Unix timestamp (UTC) indicating when the current window resets        |
+
+When you exceed your rate limit, the API returns `429 Too Many Requests`. Wait until the time indicated by `X-RateLimit-Reset` before retrying.
+
+## Response Format
+
+All API responses are JSON. Successful operations return an HTTP `2xx` status code alongside the response body. Here is an example of a successful response:
+
+```json
+{
+  "data": [...],
+  "next_cursor": "cur_01HXYZ",
+  "has_more": true
+}
+```
+
+When an error occurs, the API returns an appropriate `4xx` or `5xx` status code with a JSON body containing an `error` object:
+
+```json
+{
+  "error": {
+    "code": "unauthorized",
+    "message": "Missing or invalid API key."
+  }
+}
+```
+
+Use `error.code` for programmatic error handling and `error.message` for human-readable context.
+
+## Error Codes
+
+The table below lists the HTTP status codes you may encounter across all endpoints:
+
+| Status Code                 | Meaning                                                     |
+| --------------------------- | ----------------------------------------------------------- |
+| `401 Unauthorized`          | Missing or invalid API key                                  |
+| `403 Forbidden`             | The API key is valid but lacks permission for this action   |
+| `404 Not Found`             | The requested resource does not exist                       |
+| `429 Too Many Requests`     | You have exceeded your plan's rate limit                    |
+| `500 Internal Server Error` | An unexpected error occurred on Revont's servers            |
+
+## Pagination
+
+All list endpoints use **cursor-based pagination**. To page through results, pass the following query parameters:
+
+| Parameter | Type    | Default | Description                                                               |
+| --------- | ------- | ------- | ------------------------------------------------------------------------- |
+| `limit`   | integer | `20`    | Number of records to return per page. Maximum value is `100`.             |
+| `cursor`  | string  | —       | Opaque cursor from the `next_cursor` field of the previous response.      |
+
+Every paginated response includes three top-level fields:
+
+| Field         | Type            | Description                                                               |
+| ------------- | --------------- | ------------------------------------------------------------------------- |
+| `data`        | array           | The records returned for this page                                        |
+| `next_cursor` | string \| null  | Pass this value as `cursor` in your next request to fetch the next page   |
+| `has_more`    | boolean         | `true` if additional records exist beyond the current page                |
+
+When `has_more` is `false`, you have retrieved all available records.
+
+**Example — fetching the second page of calls:**
+
+```bash
+curl "https://api.revont.ai/v1/calls?limit=20&cursor=cur_01HXYZ" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```

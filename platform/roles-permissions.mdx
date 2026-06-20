@@ -1,0 +1,70 @@
+---
+title: "Roles and Permissions: Admin, Manager, and Rep in Revont"
+sidebarTitle: "Roles & Permissions"
+description: "Learn what Admins, Managers, and Reps can access in Revont — from workspace settings and integrations to call recordings and analytics."
+---
+
+Revont uses a three-tier role model — **Admin**, **Manager**, and **Rep** — to give each person exactly the access they need without exposing settings or data they shouldn't see. Roles are assigned when you invite a user and can be changed at any time by an Admin. This page outlines what each role can and cannot do across the platform.
+
+## Permissions at a glance
+
+| Capability | Admin | Manager | Rep |
+|---|:---:|:---:|:---:|
+| Invite / remove users | ✅ | ❌ | ❌ |
+| Change user roles | ✅ | ❌ | ❌ |
+| Create and edit playbooks | ✅ | ✅ | ❌ |
+| View all calls in workspace | ✅ | ❌ | ❌ |
+| View calls in own group | ✅ | ✅ | ❌ |
+| View own calls only | ✅ | ✅ | ✅ |
+| Access call analytics | ✅ | ✅ (group-scoped) | ❌ |
+| Manage workspace settings | ✅ | ❌ | ❌ |
+| Manage integrations | ✅ | ❌ | ❌ |
+| Generate API keys | ✅ | ❌ | ❌ |
+
+## Admin
+
+Admins have full access to every feature and setting in the Revont workspace. This role is typically held by the IT owner, RevOps lead, or whoever is responsible for configuring and maintaining the sales tech stack.
+
+As an Admin, you can:
+
+- Invite, suspend, and remove users, and change any user's role
+- Configure all workspace settings, including call recording mode, data retention, and branding
+- View every call recording and transcript across the entire workspace, regardless of group
+- Create, edit, and delete playbooks and coaching templates
+- Set up and manage CRM and calendar integrations
+- Generate and revoke API keys for custom integrations
+- Access workspace-wide analytics and reporting
+
+There is no limit on the number of Admins in a workspace, but Revont recommends limiting this role to a small number of trusted individuals given the breadth of access it provides.
+
+## Manager
+
+Managers can run their team's coaching workflow and access analytics for the reps in their group, but they cannot make changes that affect the broader workspace configuration.
+
+As a Manager, you can:
+
+- View call recordings, transcripts, and AI summaries for every rep in your assigned group(s)
+- Access group-level analytics, including talk-time ratios, topic trends, and rep performance metrics
+- Create and edit playbooks and in-call guidance templates
+- Add inline comments and coaching notes to individual calls
+- View and update action items for reps in your group
+
+Managers cannot view calls from reps outside their group, change workspace settings, manage integrations, or modify another user's role. If you need a Manager to see calls across multiple groups, assign them to each relevant group — or consider whether the Admin role is more appropriate.
+
+## Rep
+
+Reps interact with Revont primarily through the live call assistant and their personal call library. Their access is scoped to their own activity by default.
+
+As a Rep, you can:
+
+- Use the live in-call assistant to receive real-time guidance, next-step suggestions, and battle card prompts during active calls
+- View your own call recordings, AI-generated summaries, and full transcripts after each call
+- Review, complete, and add notes to your own action items
+- Share individual call summaries with colleagues or external stakeholders via a shareable link
+- Update your personal profile settings, including timezone and notification preferences
+
+Reps cannot view other reps' calls unless a Manager or Admin explicitly shares a specific call with them. They also cannot access workspace-level analytics, modify playbooks, or change any workspace configuration.
+
+<Info>
+  Custom roles with fine-grained permissions are available on the **Enterprise plan**, allowing you to tailor access at a more granular level — for example, giving a senior rep read-only access to group analytics or restricting a manager from editing playbooks. Contact your Revont account executive or [reach out to sales](mailto:sales@revont.io) to enable custom roles for your workspace.
+</Info>

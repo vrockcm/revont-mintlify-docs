@@ -1,0 +1,99 @@
+{
+  "projectType": "saas",
+  "projectName": "Revont",
+  "projectDescription": "Revont is an AI-powered call assistant for sales teams that listens to live sales calls, surfaces real-time guidance, and automatically captures notes, action items, and CRM updates.",
+  "theme": "luma",
+  "primaryColor": "#ffffff",
+  "lightColor": "#ffffff",
+  "darkColor": "#ffffff",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "core-concepts"
+            ]
+          },
+          {
+            "group": "Platform",
+            "pages": [
+              "platform/workspace-setup",
+              "platform/user-management",
+              "platform/roles-permissions"
+            ]
+          },
+          {
+            "group": "AI Assistant",
+            "pages": [
+              "assistant/live-call-guidance",
+              "assistant/call-summaries",
+              "assistant/action-items",
+              "assistant/playbooks"
+            ]
+          },
+          {
+            "group": "Analytics",
+            "pages": [
+              "analytics/call-analytics",
+              "analytics/team-performance",
+              "analytics/dashboards"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/crm",
+              "integrations/calendar",
+              "integrations/video-conferencing",
+              "integrations/webhooks"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api/overview",
+              "api/authentication"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "api/calls",
+              "api/summaries",
+              "api/contacts",
+              "api/webhooks"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Real-time AI guidance during live sales calls",
+    "Automatic call summaries and action items",
+    "AI-generated playbooks and talk tracks",
+    "CRM auto-update after every call",
+    "Team performance analytics and coaching insights",
+    "Calendar and video conferencing integrations",
+    "Webhook support for custom automation"
+  ],
+  "publicApiSurface": [
+    "GET /calls — list recorded calls",
+    "GET /calls/{id} — get call details",
+    "GET /calls/{id}/summary — get AI-generated summary",
+    "GET /calls/{id}/action-items — get action items from a call",
+    "GET /contacts — list contacts",
+    "POST /webhooks — register a webhook endpoint",
+    "DELETE /webhooks/{id} — remove a webhook"
+  ]
+}

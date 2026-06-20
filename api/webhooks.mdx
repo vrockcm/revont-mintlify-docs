@@ -1,0 +1,186 @@
+---
+title: "Webhooks API — Register and Manage Event Endpoints"
+sidebarTitle: "Webhooks"
+description: "Use the Revont Webhooks API to programmatically list, create, and delete webhook endpoints that receive real-time call and summary event payloads."
+---
+
+The Webhooks API lets you create and manage webhook endpoints programmatically — without using the Revont UI. Use it when you need to register endpoints dynamically, automate your infrastructure setup, or manage webhooks as part of a deployment pipeline.
+
+Each webhook you create points to an HTTPS URL that Revont will send event payloads to when subscribed events occur. You choose which events each endpoint listens to at registration time. For a full list of available events and details on payload structure and signature verification, see the [Webhooks integration guide](/integrations/webhooks).
+
+---
+
+## List all webhooks
+
+```
+GET /webhooks
+```
+
+Returns all webhook endpoints registered in your workspace.
+
+```bash cURL
+curl "https://api.revont.ai/v1/webhooks" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "wh_01HX9ABCDE",
+      "url": "https://hooks.yourapp.com/revont",
+      "events": ["call.ended", "summary.ready"],
+      "description": "Production event handler",
+      "created_at": "2024-02-01T10:00:00Z",
+      "status": "active"
+    },
+    {
+      "id": "wh_01HX9ABCDF",
+      "url": "https://staging.yourapp.com/revont",
+      "events": ["call.ended"],
+      "description": "Staging environment",
+      "created_at": "2024-01-15T08:30:00Z",
+      "status": "disabled"
+    }
+  ]
+}
+```
+
+### Response Fields
+
+<ResponseField name="data" type="array">
+  Array of registered webhook endpoint objects.
+
+  <Expandable title="Webhook object fields">
+    <ResponseField name="id" type="string">
+      Unique identifier for the webhook endpoint.
+    </ResponseField>
+    <ResponseField name="url" type="string">
+      The HTTPS destination URL that Revont sends event payloads to.
+    </ResponseField>
+    <ResponseField name="events" type="array">
+      List of event types this endpoint is subscribed to (e.g., `call.ended`, `summary.ready`).
+    </ResponseField>
+    <ResponseField name="description" type="string">
+      Human-readable label for this webhook endpoint, if one was provided at creation.
+    </ResponseField>
+    <ResponseField name="created_at" type="string">
+      ISO 8601 timestamp indicating when this webhook was registered.
+    </ResponseField>
+    <ResponseField name="status" type="string">
+      Current status of the endpoint. Either `active` or `disabled`.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+---
+
+## Create a webhook
+
+```
+POST /webhooks
+```
+
+Registers a new webhook endpoint. Revont will immediately begin delivering matching events to the URL you provide.
+
+```bash cURL
+curl -X POST "https://api.revont.ai/v1/webhooks" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://hooks.yourapp.com/revont",
+    "events": ["call.ended", "summary.ready"],
+    "description": "Production event handler"
+  }'
+```
+
+### Request Body
+
+<ParamField body="url" type="string" required>
+  The HTTPS destination URL where Revont should send event payloads. Must be a valid `https://` URL — plain HTTP is not accepted.
+</ParamField>
+
+<ParamField body="events" type="array of strings" required>
+  One or more event types to subscribe to. For example: `["call.ended", "summary.ready"]`. You must specify at least one event.
+</ParamField>
+
+<ParamField body="description" type="string">
+  An optional human-readable label for this webhook, such as `Production event handler` or `CRM sync`. Useful for identifying endpoints in the list view.
+</ParamField>
+
+### Response
+
+On success, the API returns `201 Created` with the new webhook object. The response includes a `secret` field containing the signing secret for this endpoint.
+
+<Warning>
+  The signing secret is returned only when the webhook is created. Revont does not store it in retrievable form after this point. Save it securely immediately — if you lose it, you must delete this webhook and create a new one to get a new secret.
+</Warning>
+
+```json
+{
+  "id": "wh_01HX9ABCDE",
+  "url": "https://hooks.yourapp.com/revont",
+  "events": ["call.ended", "summary.ready"],
+  "description": "Production event handler",
+  "created_at": "2024-03-20T12:00:00Z",
+  "status": "active",
+  "secret": "whsec_4f8a2b1c9d3e7f6a0b5c8d2e1f4a7b3c"
+}
+```
+
+### Response Fields
+
+<ResponseField name="id" type="string">
+  Unique identifier for the newly created webhook endpoint.
+</ResponseField>
+
+<ResponseField name="url" type="string">
+  The destination URL you registered.
+</ResponseField>
+
+<ResponseField name="events" type="array">
+  The event types this endpoint is subscribed to.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  The label you provided, if any.
+</ResponseField>
+
+<ResponseField name="created_at" type="string">
+  ISO 8601 timestamp indicating when the webhook was registered.
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  Always `active` for a newly created webhook.
+</ResponseField>
+
+<ResponseField name="secret" type="string">
+  The signing secret for this endpoint. Use this to verify that incoming payloads originate from Revont. **Shown only once** — store it immediately.
+</ResponseField>
+
+---
+
+## Delete a webhook
+
+```
+DELETE /webhooks/{id}
+```
+
+Permanently deletes a webhook endpoint. Revont immediately stops delivering events to the associated URL. This action cannot be undone.
+
+```bash cURL
+curl -X DELETE "https://api.revont.ai/v1/webhooks/wh_01HX9ABCDE" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique ID of the webhook endpoint to delete.
+</ParamField>
+
+### Response
+
+On success, the API returns `204 No Content` with no response body.

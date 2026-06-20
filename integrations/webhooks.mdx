@@ -1,0 +1,122 @@
+---
+title: "Set Up Revont Webhooks to Automate Post-Call Workflows"
+sidebarTitle: "Webhooks"
+description: "Configure Revont webhooks to receive real-time event notifications when calls end, summaries are ready, or action items are created."
+---
+
+Webhooks let you build automations that react to Revont events the moment they happen. When a call ends, a summary is generated, or an action item is created, Revont sends an HTTP POST request to a URL you control — so you can pipe data into tools like Zapier, Slack, your own backend, or any CRM not natively supported by Revont.
+
+## Supported events
+
+| Event | When it fires |
+|---|---|
+| `call.started` | A call has begun and Revont has successfully joined |
+| `call.ended` | A call has ended |
+| `summary.ready` | The AI-generated summary is available (typically 2 minutes after `call.ended`) |
+| `action_item.created` | A new action item was extracted from a call |
+| `action_item.completed` | An action item was marked as complete |
+
+You can subscribe to any combination of these events per webhook endpoint.
+
+## Creating a webhook endpoint
+
+<Steps>
+  <Step title="Open the webhook creation page">
+    Go to **Settings → Integrations → Webhooks → New Webhook**.
+  </Step>
+  <Step title="Enter your destination URL">
+    Enter the URL where Revont should send event payloads. This must be a **publicly accessible HTTPS endpoint** — localhost URLs are not supported for production webhooks.
+  </Step>
+  <Step title="Select your events">
+    Choose one or more events from the list of [supported events](#supported-events) to subscribe to on this endpoint.
+  </Step>
+  <Step title="Save and copy your signing secret">
+    Click **Save**. Revont immediately displays a **signing secret** unique to this endpoint. Copy it now and store it securely — it will not be shown again. You'll use this secret to [verify webhook signatures](#verifying-webhook-signatures).
+  </Step>
+</Steps>
+
+## Verifying webhook signatures
+
+Every webhook request Revont sends includes an `X-Revont-Signature` header containing an HMAC-SHA256 signature of the raw request body, prefixed with `sha256=`. Verifying this signature confirms the request genuinely came from Revont and hasn't been tampered with.
+
+Use your signing secret (from the step above) and the raw request body bytes to compute the expected signature, then compare it to the header value using a timing-safe comparison.
+
+<CodeGroup>
+
+```python webhook_verify.py
+import hmac
+import hashlib
+
+def verify_signature(payload: bytes, signature: str, secret: str) -> bool:
+    expected = hmac.new(
+        secret.encode(),
+        payload,
+        hashlib.sha256
+    ).hexdigest()
+    return hmac.compare_digest(f"sha256={expected}", signature)
+```
+
+```javascript webhookVerify.js
+const crypto = require('crypto');
+
+function verifySignature(payload, signature, secret) {
+  const expected = 'sha256=' + crypto
+    .createHmac('sha256', secret)
+    .update(payload)
+    .digest('hex');
+  return crypto.timingSafeEqual(
+    Buffer.from(expected),
+    Buffer.from(signature)
+  );
+}
+```
+
+</CodeGroup>
+
+Always verify the signature before processing the payload. Reject any requests where the signature does not match.
+
+## Webhook payload format
+
+All webhook requests share the same top-level structure: an `event` name, an ISO 8601 `timestamp`, and a `data` object whose contents depend on the event type. Below is a full example for the `summary.ready` event.
+
+```json Example: summary.ready payload
+{
+  "event": "summary.ready",
+  "timestamp": "2024-09-15T14:32:00Z",
+  "data": {
+    "call_id": "call_abc123",
+    "rep_id": "user_xyz789",
+    "prospect_email": "jane@acmecorp.com",
+    "duration_seconds": 2847,
+    "summary_url": "https://app.revont.ai/calls/call_abc123/summary",
+    "coaching_score": 82
+  }
+}
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `event` | string | The event type that triggered this delivery |
+| `timestamp` | string | ISO 8601 UTC timestamp of when the event occurred |
+| `data.call_id` | string | Unique identifier for the call |
+| `data.rep_id` | string | Unique identifier for the Revont user (sales rep) on the call |
+| `data.prospect_email` | string | Email address of the prospect on the call |
+| `data.duration_seconds` | integer | Total call duration in seconds |
+| `data.summary_url` | string | Direct link to the full call summary in Revont |
+| `data.coaching_score` | integer | AI-generated coaching score from 0–100 |
+
+## Retries
+
+If your endpoint returns a non-2xx HTTP status code — or doesn't respond within the timeout window — Revont automatically retries the delivery using exponential backoff:
+
+| Attempt | Delay after previous failure |
+|---|---|
+| Retry 1 | 30 seconds |
+| Retry 2 | 5 minutes |
+| Retry 3 | 30 minutes |
+
+After 3 failed retries, the delivery is marked as **Failed** and no further attempts are made. You can view failed deliveries and manually re-trigger them from **Settings → Integrations → Webhooks → [your endpoint] → Delivery Logs**.
+
+<Note>
+  Respond to webhook requests within **10 seconds**. If your processing logic takes longer than that, respond immediately with `200 OK` to acknowledge receipt and handle the payload asynchronously in a background job or queue.
+</Note>

@@ -1,0 +1,193 @@
+---
+title: "Calls API — List and Retrieve Recorded Sales Calls"
+sidebarTitle: "Calls"
+description: "Use the Revont Calls API to list recorded calls with filters or fetch a single call by ID, including its full transcript and coaching metadata."
+---
+
+The Calls API gives you access to every call recorded in your Revont workspace. You can list calls with filters — by rep, date range, or outcome — and retrieve individual calls with their full transcripts and metadata. Use these endpoints to build reporting pipelines, feed data into your CRM, or power custom coaching dashboards.
+
+---
+
+## List all calls
+
+```
+GET /calls
+```
+
+Returns a paginated list of call records in your workspace, ordered by creation time descending. Use the query parameters below to filter and page through results.
+
+```bash cURL
+curl "https://api.revont.ai/v1/calls?limit=20&outcome=won" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Query Parameters
+
+<ParamField query="limit" type="integer">
+  Number of call records to return per page. Maximum `100`, default `20`.
+</ParamField>
+
+<ParamField query="cursor" type="string">
+  Pagination cursor returned as `next_cursor` in a previous response. Omit this parameter to start from the beginning.
+</ParamField>
+
+<ParamField query="rep_id" type="string">
+  Filter results to calls belonging to a specific rep. Pass the rep's user ID.
+</ParamField>
+
+<ParamField query="from" type="string">
+  Return only calls created on or after this ISO 8601 timestamp (e.g., `2024-01-01T00:00:00Z`).
+</ParamField>
+
+<ParamField query="to" type="string">
+  Return only calls created on or before this ISO 8601 timestamp (e.g., `2024-03-31T23:59:59Z`).
+</ParamField>
+
+<ParamField query="outcome" type="string">
+  Filter by call outcome. Accepted values: `won`, `lost`, `follow_up`, `no_outcome`.
+</ParamField>
+
+### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "call_01HX4BQZPK8J2NFRT3WY",
+      "created_at": "2024-03-15T14:32:00Z",
+      "duration_seconds": 1842,
+      "rep_id": "user_01HX1ABCDE",
+      "prospect_email": "jane.doe@acme.com",
+      "coaching_score": 78,
+      "outcome": "won"
+    },
+    {
+      "id": "call_01HX4BQZPK8J2NFRT3WZ",
+      "created_at": "2024-03-14T10:15:00Z",
+      "duration_seconds": 934,
+      "rep_id": "user_01HX1ABCDE",
+      "prospect_email": "bob.smith@globex.com",
+      "coaching_score": 61,
+      "outcome": "follow_up"
+    }
+  ],
+  "next_cursor": "cur_01HX4CDEF",
+  "has_more": true
+}
+```
+
+### Response Fields
+
+<ResponseField name="data" type="array">
+  Array of call objects for the current page.
+
+  <Expandable title="Call object fields">
+    <ResponseField name="id" type="string">
+      Unique identifier for the call.
+    </ResponseField>
+    <ResponseField name="created_at" type="string">
+      ISO 8601 timestamp indicating when the call was recorded.
+    </ResponseField>
+    <ResponseField name="duration_seconds" type="integer">
+      Total call duration in seconds.
+    </ResponseField>
+    <ResponseField name="rep_id" type="string">
+      User ID of the sales rep on the call.
+    </ResponseField>
+    <ResponseField name="prospect_email" type="string">
+      Email address of the prospect on the call, typically sourced from the calendar invite.
+    </ResponseField>
+    <ResponseField name="coaching_score" type="integer">
+      AI-generated coaching score for this call, from 0 to 100.
+    </ResponseField>
+    <ResponseField name="outcome" type="string">
+      Outcome of the call. One of `won`, `lost`, `follow_up`, or `no_outcome`.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="next_cursor" type="string | null">
+  Opaque cursor to pass as the `cursor` query parameter in your next request. `null` when there are no further pages.
+</ResponseField>
+
+<ResponseField name="has_more" type="boolean">
+  `true` if additional records exist beyond the current page.
+</ResponseField>
+
+---
+
+## Retrieve a call
+
+```
+GET /calls/{id}
+```
+
+Returns a single call record by its ID, including the full transcript broken into speaker-labeled segments.
+
+```bash cURL
+curl "https://api.revont.ai/v1/calls/call_01HX4BQZPK8J2NFRT3WY" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique ID of the call to retrieve.
+</ParamField>
+
+### Response
+
+```json
+{
+  "id": "call_01HX4BQZPK8J2NFRT3WY",
+  "created_at": "2024-03-15T14:32:00Z",
+  "duration_seconds": 1842,
+  "rep_id": "user_01HX1ABCDE",
+  "prospect_email": "jane.doe@acme.com",
+  "coaching_score": 78,
+  "outcome": "won",
+  "transcript": [
+    {
+      "speaker": "rep",
+      "start_ms": 0,
+      "end_ms": 7400,
+      "text": "Hey Jane, thanks for making the time today. How are you doing?"
+    },
+    {
+      "speaker": "prospect",
+      "start_ms": 7500,
+      "end_ms": 14200,
+      "text": "Doing well, thanks! Really looking forward to seeing the new features."
+    },
+    {
+      "speaker": "rep",
+      "start_ms": 14300,
+      "end_ms": 26800,
+      "text": "Great — let me share my screen and we can jump right in."
+    }
+  ]
+}
+```
+
+### Response Fields
+
+In addition to all fields returned by the list endpoint, the single-call response includes:
+
+<ResponseField name="transcript" type="array">
+  Ordered array of transcript segments representing the full conversation.
+
+  <Expandable title="Transcript segment fields">
+    <ResponseField name="speaker" type="string">
+      Who spoke this segment. Either `rep` or `prospect`.
+    </ResponseField>
+    <ResponseField name="start_ms" type="integer">
+      Start time of the segment in milliseconds from the beginning of the call.
+    </ResponseField>
+    <ResponseField name="end_ms" type="integer">
+      End time of the segment in milliseconds from the beginning of the call.
+    </ResponseField>
+    <ResponseField name="text" type="string">
+      Transcribed text of the segment.
+    </ResponseField>
+  </Expandable>
+</ResponseField>

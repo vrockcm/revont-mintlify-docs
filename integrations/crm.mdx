@@ -1,0 +1,85 @@
+---
+title: "Connect Revont to Salesforce or HubSpot for CRM Sync"
+sidebarTitle: "CRM"
+description: "Sync call summaries, action items, and notes from Revont directly to Salesforce or HubSpot contact and deal records automatically."
+---
+
+When you connect Revont to your CRM, every call you complete automatically writes back to the right record — no copy-pasting, no missed follow-ups. Revont matches the prospect by email address and logs the call summary, action items, and activity details directly to the contact or deal in Salesforce or HubSpot within minutes of the call ending.
+
+## Supported CRMs
+
+- **Salesforce** (Sales Cloud)
+- **HubSpot CRM**
+
+Need to connect a different CRM? You can push Revont data to any CRM that accepts incoming data using the [REST API](/api/overview) or [webhooks](/integrations/webhooks).
+
+## Connecting Salesforce
+
+<Steps>
+  <Step title="Open the Salesforce integration page">
+    Go to **Settings → Integrations → CRM → Salesforce**.
+  </Step>
+  <Step title="Authorize the connection">
+    Click **Connect with Salesforce**. You'll be redirected to Salesforce to authorize the connection.
+  </Step>
+  <Step title="Sign in with the right user">
+    Sign in with a Salesforce user that has API access and permission to create tasks and log activities. Using a dedicated integration user is recommended so activity logs show a consistent author.
+  </Step>
+  <Step title="Confirm the connection">
+    Return to Revont. The connection status shows as **Connected**.
+  </Step>
+  <Step title="Configure field mapping">
+    Map Revont data fields to your Salesforce fields. See [Field mapping](#field-mapping) below.
+  </Step>
+</Steps>
+
+## Connecting HubSpot
+
+<Steps>
+  <Step title="Open the HubSpot integration page">
+    Go to **Settings → Integrations → CRM → HubSpot**.
+  </Step>
+  <Step title="Authorize the connection">
+    Click **Connect with HubSpot**. You'll be redirected to HubSpot to authorize the connection.
+  </Step>
+  <Step title="Select your HubSpot account">
+    Select the HubSpot account you want to connect and click **Grant Access**.
+  </Step>
+  <Step title="Configure field mapping">
+    Map Revont data fields to your HubSpot properties. See [Field mapping](#field-mapping) below.
+  </Step>
+</Steps>
+
+## Field mapping
+
+After connecting your CRM, you configure how Revont data maps to CRM fields. The table below shows the defaults and your customization options.
+
+| Revont data | Default CRM destination | Notes |
+|---|---|---|
+| Call summary | Call / Activity Notes field | Editable — you can point this to any long-text field |
+| Action items | Tasks on the contact or deal record | One task is created per action item extracted |
+| Call date and duration | Call Activity log | Logged automatically with every synced call |
+| Coaching score | *(not mapped by default)* | Requires a custom field in your CRM — [create it first](#coaching-score-custom-field), then map it here |
+
+### Coaching score custom field
+
+Revont's AI coaching score is an optional numeric field (0–100). To sync it, you need to create a custom field in your CRM first:
+
+- **Salesforce** — Create a custom Number field on the Task or Activity object and name it something like `Revont_Coaching_Score__c`.
+- **HubSpot** — Create a custom Number property on the Activity object.
+
+Once the field exists, return to **Settings → Integrations → CRM → Field Mapping** and map **Coaching score** to the field you created.
+
+## How sync works
+
+Sync happens automatically within **5 minutes** of a call ending. Revont uses the following logic:
+
+1. Revont looks up the prospect's email address in your CRM.
+2. If a matching contact is found, the call activity is logged to that contact (and to any associated open deal or opportunity, if one exists).
+3. If no matching contact is found, Revont **creates a new contact** using the prospect's email, name, and company (where available).
+
+You can change step 3 to **Skip unmatched contacts** instead of creating new ones. Go to **Settings → Integrations → CRM → Sync Behavior** and toggle the **Create new contacts** setting off.
+
+<Warning>
+  Revont uses the prospect's email address to match CRM contacts. Make sure email addresses are accurate in your calendar invites — a missing or misspelled email will result in a new duplicate contact being created.
+</Warning>
