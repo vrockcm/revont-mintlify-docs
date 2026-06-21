@@ -9,8 +9,8 @@
     "dark": "#ffffff"
   },
   "favicon": {
-    "light": "/images/Revont-01-white.svg",
-    "dark": "/images/Revont-01.svg"
+    "light": "/images/Revont_RevontBlack.svg",
+    "dark": "/images/Revont_RevontWhite.svg"
   },
   "icons": {
     "library": "fontawesome"
@@ -107,8 +107,8 @@
     }
   },
   "logo": {
-    "light": "/images/Revont-01-white.svg",
-    "dark": "/images/Revont-01.svg",
+    "light": "/images/Revont_RevontLogoBlack.png",
+    "dark": "/images/Revont_RevontLogoWhite.png",
     "href": "https://revont.ai"
   },
   "background": {
