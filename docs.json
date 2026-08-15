@@ -67,6 +67,14 @@
               "integrations/video-conferencing",
               "integrations/webhooks"
             ]
+          },
+          {
+            "group": "Pricing",
+            "pages": [
+              "pricing",
+              "pricing/credits",
+              "pricing/usage"
+            ]
           }
         ]
       },
