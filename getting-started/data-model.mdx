@@ -1,0 +1,31 @@
+---
+title: "Data Model"
+sidebarTitle: "Data Model"
+description: "Understand the records, fields, custom models, and relationships used throughout Revont."
+icon: "database"
+---
+
+Revont's workspace is record-based. The main navigation exposes Clients, Deals, Contacts, and any custom models made available to the workspace.
+
+## Core records
+
+- **Clients** represent the customer accounts your team works with.
+- **Deals** represent pipeline work connected to a client.
+- **Contacts** represent people connected to clients and deals.
+- **Meetings and emails** are activity that can link back to those records.
+- **Actions** represent follow-up work.
+- **Custom models** extend the workspace with additional record types.
+
+## Custom models
+
+Admins with the required feature and permission can open Settings → Data Model. The Data Model surface lets an admin inspect the workspace objects, see field counts, create objects, open an object editor, and view the relationship visualization.
+
+Custom models can also appear in the Custom Models sidebar group. Their labels and icons come from the workspace definition.
+
+## Relationships
+
+Records can be connected through the relationships configured for the workspace. When a page offers a client, deal, or contact selector, choosing one narrows the available related options where the app supports that relationship.
+
+<Note>
+  Field names, object labels, and available custom models are workspace-defined. This guide does not prescribe a schema that may not exist in your account.
+</Note>
