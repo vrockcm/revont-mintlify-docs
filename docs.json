@@ -25,7 +25,8 @@
     "tabs": [
       {
         "tab": "Getting Started",
-        "href": "/getting-started"
+        "href": "/getting-started",
+        "icon": "rocket"
       },
       {
         "tab": "Documentation",
@@ -57,7 +58,8 @@
         "tab": "Changelog",
         "pages": [
           "product-updates"
-        ]
+        ],
+        "hidden": true
       }
     ]
   },
