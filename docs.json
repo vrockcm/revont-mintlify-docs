@@ -24,59 +24,13 @@
   "navigation": {
     "tabs": [
       {
+        "tab": "Getting Started",
+        "href": "/getting-started"
+      },
+      {
         "tab": "Documentation",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "introduction",
-              "quickstart",
-              "core-concepts"
-            ]
-          },
-          {
-            "group": "Platform",
-            "pages": [
-              "platform/workspace-setup",
-              "platform/user-management",
-              "platform/roles-permissions"
-            ]
-          },
-          {
-            "group": "AI Assistant",
-            "pages": [
-              "assistant/live-call-guidance",
-              "assistant/call-summaries",
-              "assistant/action-items",
-              "assistant/playbooks"
-            ]
-          },
-          {
-            "group": "Analytics",
-            "pages": [
-              "analytics/call-analytics",
-              "analytics/team-performance",
-              "analytics/dashboards"
-            ]
-          },
-          {
-            "group": "Integrations",
-            "pages": [
-              "integrations/crm",
-              "integrations/calendar",
-              "integrations/video-conferencing",
-              "integrations/webhooks"
-            ]
-          },
-          {
-            "group": "Pricing",
-            "pages": [
-              "pricing",
-              "pricing/credits",
-              "pricing/usage"
-            ]
-          }
-        ]
+        "icon": "book-open",
+        "href": "/user-guide/introduction"
       },
       {
         "tab": "API Reference",
