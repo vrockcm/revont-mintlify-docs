@@ -2,18 +2,18 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
   "name": "Revont",
-  "description": "AI Call Assistant for Sales — real-time guidance, automatic summaries, and CRM sync for every call.",
+  "description": "The AI-Native Sales Intelligence Platform for revenue teams. Revont connects conversations, customer data, and next steps.",
   "colors": {
-    "primary": "#ffffff",
-    "light": "#ffffff",
-    "dark": "#ffffff"
+    "primary": "#3b82f6",
+    "light": "#60a5fa",
+    "dark": "#8b5cf6"
   },
   "favicon": {
     "light": "/images/Revont_RevontBlack.svg",
     "dark": "/images/Revont_RevontWhite.svg"
   },
   "icons": {
-    "library": "fontawesome"
+    "library": "lucide"
   },
   "styling": {
     "eyebrows": "section"
@@ -25,31 +25,206 @@
     "tabs": [
       {
         "tab": "Getting Started",
-        "href": "/getting-started",
-        "icon": "rocket"
-      },
-      {
-        "tab": "Documentation",
-        "icon": "book-open",
-        "href": "/user-guide/introduction"
-      },
-      {
-        "tab": "API Reference",
+        "icon": "rocket",
         "groups": [
           {
-            "group": "Overview",
+            "group": "Welcome",
+            "icon": "sparkles",
             "pages": [
-              "api/overview",
-              "api/authentication"
+              "getting-started/introduction",
+              "getting-started/why-revont",
+              "getting-started/key-features",
+              "getting-started/quickstart"
             ]
           },
           {
-            "group": "Endpoints",
+            "group": "Core Concepts",
+            "icon": "layers",
             "pages": [
-              "api/calls",
-              "api/summaries",
-              "api/contacts",
-              "api/webhooks"
+              "getting-started/workspace-and-navigation",
+              "getting-started/data-model",
+              "getting-started/communications",
+              "getting-started/ai-and-memory"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "User Guide",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Overview",
+            "icon": "book-open",
+            "pages": ["user-guide/introduction"]
+          },
+          {
+            "group": "Workspace",
+            "icon": "panel-left",
+            "pages": [
+              "user-guide/home",
+              "user-guide/navigation",
+              "user-guide/workspace/home-page",
+              "user-guide/workspace/sidebar-and-search"
+            ]
+          },
+          {
+            "group": "Customers And Pipeline",
+            "icon": "briefcase-business",
+            "pages": [
+              {
+                "group": "Clients",
+                "icon": "building-2",
+                "pages": [
+                  "user-guide/clients",
+                  "user-guide/clients/create-and-manage"
+                ]
+              },
+              {
+                "group": "Deals",
+                "icon": "handshake",
+                "pages": [
+                  "user-guide/deals",
+                  "user-guide/deals/create-and-manage"
+                ]
+              },
+              {
+                "group": "Contacts",
+                "icon": "contact",
+                "pages": [
+                  "user-guide/contacts",
+                  "user-guide/contacts/create-and-manage"
+                ]
+              },
+              {
+                "group": "Custom Models",
+                "icon": "database",
+                "pages": [
+                  "user-guide/custom-models",
+                  "user-guide/custom-models/create-and-manage"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Communications",
+            "icon": "messages-square",
+            "pages": [
+              "user-guide/communications",
+              "user-guide/communications/meetings-and-calendar",
+              "user-guide/communications/emails"
+            ]
+          },
+          {
+            "group": "Actions And Knowledge",
+            "icon": "workflow",
+            "pages": [
+              {
+                "group": "Actions",
+                "icon": "list-checks",
+                "pages": [
+                  "user-guide/action-items",
+                  "user-guide/action-items/create-and-manage"
+                ]
+              },
+              {
+                "group": "Knowledge Base",
+                "icon": "book-open",
+                "pages": [
+                  "user-guide/knowledge-base",
+                  "user-guide/knowledge-base/create-and-edit-article",
+                  "user-guide/knowledge-base/import-and-organize"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Intelligence And Coaching",
+            "icon": "brain",
+            "pages": [
+              "user-guide/ai-and-search",
+              {
+                "group": "Chat",
+                "icon": "message-circle",
+                "pages": [
+                  "user-guide/chat",
+                  "user-guide/chat/use-chat",
+                  "user-guide/chat/use-chat-actions",
+                  "user-guide/chat/attach-files"
+                ]
+              },
+              {
+                "group": "Coaching",
+                "icon": "graduation-cap",
+                "pages": [
+                  "user-guide/coaching",
+                  "user-guide/coaching/review-coaching-insights"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Analytics And Reports",
+            "icon": "chart-no-axes-combined",
+            "pages": [
+              "user-guide/analytics-reports",
+              "user-guide/analytics-reports/create-a-report",
+              "user-guide/analytics-reports/manage-dashboards"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "icon": "plug",
+            "pages": [
+              "user-guide/crm-integrations",
+              "user-guide/crm-integrations/connect-and-map"
+            ]
+          },
+          {
+            "group": "Administration",
+            "icon": "shield-check",
+            "pages": [
+              {
+                "group": "Organization Management",
+                "icon": "users",
+                "pages": [
+                  "user-guide/organization-management",
+                  "user-guide/organization-management/manage-users"
+                ]
+              },
+              {
+                "group": "Audit",
+                "icon": "file-clock",
+                "pages": [
+                  "user-guide/audit",
+                  "user-guide/audit/review-activity"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Settings",
+            "icon": "settings",
+            "pages": [
+              "user-guide/settings",
+              {
+                "group": "Preferences",
+                "icon": "sliders-horizontal",
+                "pages": [
+                  "user-guide/settings/overview",
+                  "user-guide/settings/general",
+                  "user-guide/settings/billing",
+                  "user-guide/settings/data-model",
+                  "user-guide/settings/data-and-storage",
+                  "user-guide/settings/integrations",
+                  "user-guide/settings/keybinds",
+                  "user-guide/settings/privacy",
+                  "user-guide/settings/profile",
+                  "user-guide/settings/quotas",
+                  "user-guide/settings/support",
+                  "user-guide/settings/voice"
+                ]
+              }
             ]
           }
         ]
@@ -93,5 +268,15 @@
   },
   "fonts": {
     "family": "Inter"
-  }
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/getting-started",
+      "destination": "/getting-started/introduction"
+    }
+  ]
 }
