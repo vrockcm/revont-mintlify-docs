@@ -240,10 +240,10 @@
       },
       {
         "tab": "Changelog",
+        "icon": "history",
         "pages": [
           "product-updates"
-        ],
-        "hidden": true
+        ]
       }
     ]
   },
