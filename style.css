@@ -147,3 +147,9 @@ img.nav-logo {
   max-width: 220px;
   height: auto;
 }
+
+/* Use a real font weight instead of the selected-tab faux-bold text shadow. */
+.nav-tabs-item[data-active="true"] {
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}

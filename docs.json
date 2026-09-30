@@ -5,8 +5,8 @@
   "description": "The AI-Native Sales Intelligence Platform for revenue teams. Revont connects conversations, customer data, and next steps.",
   "colors": {
     "primary": "#3b82f6",
-    "light": "#60a5fa",
-    "dark": "#8b5cf6"
+    "light": "#3b82f6",
+    "dark": "#3b82f6"
   },
   "favicon": {
     "light": "/images/Revont_RevontBlack.svg",
@@ -225,6 +225,15 @@
                   "user-guide/settings/voice"
                 ]
               }
+            ]
+          },
+          {
+            "group": "Pricing",
+            "icon": "coins",
+            "pages": [
+              "pricing",
+              "pricing/credits",
+              "pricing/usage"
             ]
           }
         ]
