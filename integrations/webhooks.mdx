@@ -1,19 +1,19 @@
 ---
-title: "Set Up Revont Webhooks to Automate Post-Call Workflows"
+title: "Set Up Revont Webhooks to Automate Post-Meeting Workflows"
 sidebarTitle: "Webhooks"
-description: "Configure Revont webhooks to receive real-time event notifications when calls end, summaries are ready, or action items are created."
+description: "Configure Revont webhooks to receive real-time event notifications when meetings end, summaries are ready, or action items are created."
 ---
 
-Webhooks let you build automations that react to Revont events the moment they happen. When a call ends, a summary is generated, or an action item is created, Revont sends an HTTP POST request to a URL you control — so you can pipe data into tools like Zapier, Slack, your own backend, or any CRM not natively supported by Revont.
+Webhooks let you build automations that react to Revont events the moment they happen. When a meeting ends, a summary is generated, or an action item is created, Revont sends an HTTP POST request to a URL you control — so you can pipe data into tools like Zapier, Slack, your own backend, or any CRM not natively supported by Revont.
 
 ## Supported events
 
 | Event | When it fires |
-|---|---|
-| `call.started` | A call has begun and Revont has successfully joined |
-| `call.ended` | A call has ended |
+| --- | --- |
+| `call.started` | A meeting has begun and Revont has successfully joined |
+| `call.ended` | A meeting has ended |
 | `summary.ready` | The AI-generated summary is available (typically 2 minutes after `call.ended`) |
-| `action_item.created` | A new action item was extracted from a call |
+| `action_item.created` | A new action item was extracted from a meeting |
 | `action_item.completed` | An action item was marked as complete |
 
 You can subscribe to any combination of these events per webhook endpoint.
@@ -95,14 +95,14 @@ All webhook requests share the same top-level structure: an `event` name, an ISO
 ```
 
 | Field | Type | Description |
-|---|---|---|
+| --- | --- | --- |
 | `event` | string | The event type that triggered this delivery |
 | `timestamp` | string | ISO 8601 UTC timestamp of when the event occurred |
-| `data.call_id` | string | Unique identifier for the call |
-| `data.rep_id` | string | Unique identifier for the Revont user (sales rep) on the call |
-| `data.prospect_email` | string | Email address of the prospect on the call |
-| `data.duration_seconds` | integer | Total call duration in seconds |
-| `data.summary_url` | string | Direct link to the full call summary in Revont |
+| `data.call_id` | string | Unique identifier for the meeting |
+| `data.rep_id` | string | Unique identifier for the Revont user (sales rep) on the meeting |
+| `data.prospect_email` | string | Email address of the prospect on the meeting |
+| `data.duration_seconds` | integer | Total meeting duration in seconds |
+| `data.summary_url` | string | Direct link to the full meeting summary in Revont |
 | `data.coaching_score` | integer | AI-generated coaching score from 0–100 |
 
 ## Retries
@@ -110,7 +110,7 @@ All webhook requests share the same top-level structure: an `event` name, an ISO
 If your endpoint returns a non-2xx HTTP status code — or doesn't respond within the timeout window — Revont automatically retries the delivery using exponential backoff:
 
 | Attempt | Delay after previous failure |
-|---|---|
+| --- | --- |
 | Retry 1 | 30 seconds |
 | Retry 2 | 5 minutes |
 | Retry 3 | 30 minutes |
