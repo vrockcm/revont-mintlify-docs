@@ -18,6 +18,10 @@ Organization admins also control the organization's seat subscription and pooled
 
 Payment-method status is redacted to card brand and last four digits. If a payment method is missing, use **Open Stripe Billing Portal** from the Auto-Recharge controls.
 
+Changes to the Auto-Recharge package or threshold require a final confirmation. The confirmation explains that the setting is effective immediately for future checks and that Stripe charges the organization's saved payment method only when the threshold is reached. The pooled balance is always read from the server.
+
+After a seat change, credit settlement, Auto-Recharge, or reconnect, the page refreshes the authoritative organization summary. A regular member can see permitted usage for their own account, but only an organization admin can see pooled balances, other members' consumption, or billing controls.
+
 ## Find people
 
 Use the search field and role filter to narrow the unified member and invitation table. The table keeps its own internal scroll area so the page remains usable with large organizations.

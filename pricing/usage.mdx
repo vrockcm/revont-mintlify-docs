@@ -70,6 +70,8 @@ Only organization admins can configure Auto-Recharge.
 
 Your organization selects its preferred recharge amount.
 
+When an admin changes the package or threshold, Revont shows a confirmation step before applying the new settings. The change is effective immediately for future pooled-credit checks. The next Auto-Recharge action charges the organization's saved Stripe payment method only when the balance reaches the selected threshold.
+
 For example:
 
 <Steps>
@@ -99,6 +101,8 @@ Organization admins can configure:
 
 Regular users cannot purchase credits or change billing settings.
 
+The desktop app refreshes pooled balances after a billing mutation, credit settlement, Auto-Recharge, seat change, or reconnect. The server remains authoritative, so an offline desktop app does not invent a balance or overwrite newer usage after it reconnects.
+
 ## Organization access and billing roles
 
 Only organization admins can purchase seats, manage the billing interval, open the Stripe Billing Portal, or configure Auto-Recharge. Regular members use the organization's pooled allowances and cannot start a subscription or change billing settings.
@@ -119,6 +123,12 @@ Admins can see:
 | Jessica | 34.1 hrs | 92 |
 
 This allows admins to understand usage patterns without assigning individual credit limits. The organization balance remains authoritative because credits are pooled.
+
+Regular members can request only their own permitted usage summary. They cannot use member-level usage endpoints or the AI Use audit view to read organization-wide balances, another member's usage, prompts, responses, transcript text, or provider payloads.
+
+## Existing Organizations
+
+Organizations created under the legacy custom-plan flow require an idempotent migration and billing reconciliation before the new seat controls are enabled. Revont preserves the existing organization, Stripe, invitation, and billing history while mapping each organization to a catalog plan. Administrators should not buy seats or change Auto-Recharge during that migration window unless Revont has confirmed that the organization's billing state is reconciled.
 
 ## Usage notifications
 

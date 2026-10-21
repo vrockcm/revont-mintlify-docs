@@ -31,6 +31,8 @@ The **AI Use** tab shows organization-wide AI accounting metadata for each opera
 
 The view explains what happened and how it was accounted for, including credits, weighted meeting usage, provider/model identifiers, outcome, and correlation ID. It does not show prompts, full responses, transcript text, recordings, or document contents.
 
+The server applies the organization boundary and permission check to both the list and export request. A regular member cannot obtain the organization-wide AI Use data by calling the usage or export endpoint directly. Exports contain the same redacted accounting fields as the table, and the export itself is recorded in the audit history.
+
 <Note>
   Audit access is permission-controlled. The tabs and records shown depend on your organization access.
 </Note>
