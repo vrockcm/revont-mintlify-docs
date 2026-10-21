@@ -1,11 +1,22 @@
 ---
 title: "Organization Management"
 sidebarTitle: "Organization Management"
-description: "Invite, search, update, and remove organization members from the admin page."
+description: "Manage organization members, pooled usage, Auto-Recharge, and paid seats from one admin page."
 icon: "users"
 ---
 
 Organization Management is an admin-only page for members and pending invitations.
+
+## Billing And Usage Controls
+
+Organization admins also control the organization's seat subscription and pooled usage from this page:
+
+- **Buy Seats** changes the Stripe subscription quantity. The server validates the requested quantity and Stripe webhooks reconcile the final seat count.
+- **Pooled AI Credits** shows the organization's remaining balance, funded amount, and consumption by member. Credits are shared, so member rows show usage and share of pooled use, not a personal remaining balance.
+- **Auto-Recharge** is required for active organizations. Admins choose a server-provided credit package and threshold. It cannot be disabled.
+- **Call Usage** shows pooled Assisted and Unassisted hours. Unassisted hours use the documented weighted meter, and new calls are blocked when the pooled allowance is exhausted in the initial rollout.
+
+Payment-method status is redacted to card brand and last four digits. If a payment method is missing, use **Open Stripe Billing Portal** from the Auto-Recharge controls.
 
 ## Find people
 

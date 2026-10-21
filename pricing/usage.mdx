@@ -1,36 +1,55 @@
 ---
 title: "Usage & Auto-Recharge"
 sidebarTitle: "Usage & Auto-Recharge"
-description: "Learn how Revont pools usage across your organization and automatically adds credits when your balance runs low."
+description: "Learn how Revont pools usage across your organization, caps call-hour usage predictably, and automatically adds credits when your balance runs low."
 ---
 
 # Usage & Auto-Recharge
 
 Revont is designed so sales reps don't lose access to AI tools in the middle of their workday.
 
-Call Hours and Revont Credits are managed at the **organization level**, while usage is still tracked for every individual user.
+Assisted Call Hours, Unassisted Call Hours, and Revont Credits are managed at the **organization level**, while usage is still tracked for every individual user.
+
+## Assisted and unassisted calls
+
+An **Assisted Call** has live Revont suggestions or flashcards enabled. Live suggestions, suggestion warmup, and real-time coaching are covered by the call-hour meter. They do not consume Revont Credits.
+
+An **Unassisted Call** has live suggestions and flashcards disabled. Transcription and other enabled call processing can continue, but no suggestion warmup runs and no live suggestion credits are charged.
+
+Unassisted calls use a provisional **0.67 weighted-hour rate**. This makes the conversion predictable:
+
+| Actual call time | Weighted usage |
+| --: | --: |
+| 1 Assisted hour | 1.00 weighted hour |
+| 1 Unassisted hour | 0.67 weighted hour |
+| 3 Assisted hours | 3.00 weighted hours |
+| 4.5 Unassisted hours | 3.00 weighted hours |
+
+That means a Revont seat's 3 daily Assisted Call Hours are equivalent to about 4.5 daily Unassisted Call Hours. Revont Pro's 4 daily Assisted Call Hours are equivalent to about 6 daily Unassisted Call Hours. These allowances are pooled across the organization.
+
+The weighting applies to call-hour accounting only. It does not make transcription free, and it does not turn background intelligence into a credit charge.
 
 ## Organization-wide allowances
 
-Every active seat contributes usage to your organization's monthly pool.
+Every paid seat contributes usage to your organization's pooled allowance.
 
 For example, a company with 10 Revont seats receives:
 
-- **600 Call Hours**
-- **1,000 Revont Credits**
+- **30 Assisted Call Hours per day**
+- **6,000 Revont Credits per month**
 
-A sales rep who needs 80 Call Hours can use them even though each Revont seat contributes 60 hours to the pool, provided the organization has enough total hours remaining.
+A sales rep can use more than one seat's daily contribution when the organization has enough pooled weighted hours remaining. For example, 10 Revont seats provide 30 Assisted Call Hours or about 45 Unassisted Call Hours per day before the pooled cap is reached.
 
-## Call Hour overages
+## Call Hour cap
 
-When your organization exceeds its included monthly Call Hours, calls continue without interruption.
+When your organization reaches its included weighted call-hour allowance, Revont blocks starting a new call until more allowance is available in the next usage period.
 
-Additional usage is automatically billed based on your plan.
+The initial rollout does not automatically bill call-hour overages. This keeps call costs predictable while the pooled meter is validated. Any future Stripe metered-call product will be announced and documented before it is enabled.
 
-| Plan | Additional Call Usage |
+| Plan | Initial behavior after pooled allowance |
 | --- | --: |
-| Revont | \$1.00 / hour |
-| Revont Pro | \$0.75 / hour |
+| Revont | New calls are blocked |
+| Revont Pro | New calls are blocked |
 
 Admins can monitor total and individual call usage from the Revont Admin dashboard.
 
@@ -38,7 +57,7 @@ Admins can monitor total and individual call usage from the Revont Admin dashboa
 
 When your organization's Revont Credit balance gets low, Revont can automatically add more credits using the organization's billing method.
 
-There is **no manual credit purchasing**.
+There is **no manual credit purchasing**. Auto-Recharge is required for active organizations so a team does not lose access because a pooled balance reached zero.
 
 Only organization admins can configure Auto-Recharge.
 
@@ -46,40 +65,45 @@ Only organization admins can configure Auto-Recharge.
 
 | Recharge | Price |
 | --- | --: |
-| 100 Credits | \$10 |
-| 500 Credits | \$40 |
-| 1,500 Credits | \$99 |
-| 5,000 Credits | \$249 |
+| 600 Credits | \$50 |
+| 1,200 Credits | \$95 |
 
 Your organization selects its preferred recharge amount.
 
 For example:
 
 <Steps>
-  <Step title="Your organization starts with 1,000 credits">
-    A 10-seat Revont organization receives 1,000 included monthly Revont Credits.
+  <Step title="Your organization starts with 6,000 credits">
+    A 10-seat Revont organization receives 6,000 included monthly Revont Credits.
   </Step>
   <Step title="The balance reaches the Auto-Recharge threshold">
-    An admin may configure Auto-Recharge to trigger when fewer than 100 credits remain.
+    An admin may configure Auto-Recharge to trigger when the organization's configured threshold is reached.
   </Step>
   <Step title="Revont automatically adds credits">
-    If the organization selected the 500 Credit package, Revont automatically bills \$40 and adds 500 credits.
+    If the organization selected the 600 Credit package, Revont automatically bills \$50 and adds 600 credits.
   </Step>
   <Step title="Your team keeps working">
     Sales reps continue using Revont without interruption or needing to request additional credits individually.
   </Step>
 </Steps>
 
+If the automatic payment fails, Revont records the failure and does not grant unbilled credits. Credit-consuming AI actions stop when the pooled balance reaches zero until an organization admin resolves the payment method in Stripe Billing Portal. Auto-Recharge remains required for active organizations.
+
 ## Admin controls
 
 Organization admins can configure:
 
-- Whether Auto-Recharge is enabled
 - The Auto-Recharge credit package
 - The balance threshold that triggers a recharge
 - Organization usage notifications
 
 Regular users cannot purchase credits or change billing settings.
+
+## Organization access and billing roles
+
+Only organization admins can purchase seats, manage the billing interval, open the Stripe Billing Portal, or configure Auto-Recharge. Regular members use the organization's pooled allowances and cannot start a subscription or change billing settings.
+
+If an administrator deactivates a member, that member sees an **Organization Access Is Inactive** screen instead of a subscription or payment screen. The member should contact an organization administrator to request reactivation. Existing organization history is preserved.
 
 ## Individual usage tracking
 
@@ -87,14 +111,14 @@ Although allowances are pooled, Revont tracks usage by user.
 
 Admins can see:
 
-| User | Call Hours | Revont Credits |
+| User | Assisted / Unassisted Hours | Revont Credits |
 | --- | --: | --: |
 | Sarah | 52.4 hrs | 128 |
 | Michael | 41.8 hrs | 74 |
 | Ryan | 63.2 hrs | 146 |
 | Jessica | 34.1 hrs | 92 |
 
-This allows admins to understand usage patterns without having to assign and manage individual credit limits.
+This allows admins to understand usage patterns without assigning individual credit limits. The organization balance remains authoritative because credits are pooled.
 
 ## Usage notifications
 
@@ -102,8 +126,8 @@ Revont can notify organization admins as usage approaches configured thresholds.
 
 For example:
 
-- 75% of monthly Call Hours consumed
-- 90% of monthly Call Hours consumed
+- 75% of the pooled weighted call-hour allowance consumed
+- 90% of the pooled weighted call-hour allowance consumed
 - Revont Credit balance below Auto-Recharge threshold
 - Auto-Recharge successfully processed
 

@@ -6,7 +6,7 @@ description: "Learn how Revont Credits work and how AI features consume your org
 
 # What is a Revont Credit?
 
-Revont Credits are the usage currency for AI-powered actions outside of your live calls.
+Revont Credits are the usage currency for user-requested AI actions outside of the live-call meter.
 
 Instead of showing your team technical measurements such as model tokens, Revont converts AI usage into a simple credit system.
 
@@ -26,16 +26,15 @@ Credits are primarily used when a user actively asks Revont to generate, analyze
 | Generate a follow-up | 1 credit |
 | Ask a question about your documents | 1 credit |
 | Summarize a document | 2 credits |
-| Analyze a document | 2–5 credits |
-| Large-context AI analysis | 5\+ credits |
+| Perform an explicit deep document or thread review | 5 credits |
 
 <Note>
-  Credit usage for larger operations may vary depending on the amount of information Revont needs to process. Revont always displays the required credits before a high-usage action is performed.
+  Revont uses fixed, published charges for customer-requested actions. Revont does not expose a vague size-based or “large-context” credit bucket. Background processing is included unless a future plan change explicitly says otherwise.
 </Note>
 
 ## What doesn't use Revont Credits?
 
-The following are covered by your monthly Call Hour allowance:
+The following are included or covered by your call-hour allowance and do not consume Revont Credits:
 
 - Live transcription
 - Real-time AI sales guidance
@@ -45,6 +44,11 @@ The following are covered by your monthly Call Hour allowance:
 - Post-call processing
 - Standard call summaries
 - Talk-time and conversation analytics
+- Suggestion Warmup during an Assisted Call
+- Post-Meeting Intelligence
+- Meeting Memory and Action Item Extraction
+- Email Thread Memory Extraction
+- Background embedding and indexing
 
 This separates Revont into two simple usage measurements:
 
@@ -64,15 +68,15 @@ Each paid seat contributes credits to the organization's shared monthly allowanc
 
 ### Revont
 
-**100 Credits per seat**
+**600 Credits per seat**
 
-10 seats = **1,000 shared monthly credits**
+10 seats = **6,000 shared monthly credits**
 
 ### Revont Pro
 
-**250 Credits per seat**
+**1,200 Credits per seat**
 
-10 seats = **2,500 shared monthly credits**
+10 seats = **12,000 shared monthly credits**
 
 A user can consume more than their per-seat contribution as long as the organization still has credits available.
 
@@ -85,6 +89,8 @@ Included credits reset when your next billing cycle begins.
 Credits added through Auto-Recharge are tracked separately and remain available until they are consumed while your organization maintains an active Revont subscription.
 
 Revont consumes your **included monthly credits first**, followed by any remaining Auto-Recharge credits.
+
+Included monthly credits expire at the end of the usage period. Auto-Recharge credits do not silently create a grace balance after a subscription is canceled. If an automatic recharge fails and the pooled balance reaches zero, credit-consuming AI actions are blocked until the organization has a valid payment method and the next recharge succeeds.
 
 <Card title="How Auto-Recharge works" icon="rotate" href="/pricing/usage">
   See what happens when your organization gets close to running out of credits.

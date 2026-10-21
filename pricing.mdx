@@ -8,7 +8,7 @@ description: "Compare Revont and Revont Pro plans, included call hours, Revont C
 
 Every Revont plan includes real-time AI call assistance, transcription, post-call analytics, and AI-powered productivity tools.
 
-Usage allowances are pooled across your organization, giving your team flexibility to use Revont where they need it most.
+Usage allowances are pooled across your organization, giving your team flexibility to use Revont where they need it most. Organization admins purchase seats, and the organization controls billing.
 
 <CardGroup cols={2}>
   <Card title="Revont" icon="sparkles">
@@ -18,8 +18,8 @@ Usage allowances are pooled across your organization, giving your team flexibili
 
     **Included per seat**
 
-    - 60 Call Hours
-    - 100 Revont Credits
+    - 3 Assisted Call Hours per seat per day
+    - 600 Revont Credits per seat per month
     - Real-time call transcription
     - Live AI sales assistance
     - Objection handling
@@ -30,9 +30,9 @@ Usage allowances are pooled across your organization, giving your team flexibili
     - Document intelligence
     - Team dashboard
 
-    **Additional Call Usage**
+    **Call Hour Allowance**
 
-    \$1.00 / additional call hour
+    Calls use the organization's pooled weighted allowance. The initial rollout blocks new calls after the allowance is exhausted. Usage-based call overage billing is not enabled until Stripe metering is implemented and documented.
   </Card>
 
   <Card title="Revont Pro" icon="building">
@@ -42,8 +42,8 @@ Usage allowances are pooled across your organization, giving your team flexibili
 
     **Included per seat**
 
-    - 100 Call Hours
-    - 250 Revont Credits
+    - 4 Assisted Call Hours per seat per day
+    - 1,200 Revont Credits per seat per month
     - Everything in Revont
     - SAML SSO
     - SCIM user provisioning
@@ -53,24 +53,33 @@ Usage allowances are pooled across your organization, giving your team flexibili
     - Centralized usage controls
     - Priority support
 
-    **Additional Call Usage**
+    **Call Hour Allowance**
 
-    \$0.75 / additional call hour
+    Calls use the organization's pooled weighted allowance. The initial rollout blocks new calls after the allowance is exhausted. Usage-based call overage billing is not enabled until Stripe metering is implemented and documented.
   </Card>
 </CardGroup>
 
+## Monthly and yearly billing
+
+Organization admins can choose the billing interval for the organization's Stripe subscription. The usage model is the same on both intervals. Annual billing changes payment cadence, not the monthly credit grant or the daily call-hour guardrail.
+
+| Plan | Monthly | Yearly |
+| --- | --: | --: |
+| Revont | \$99 per seat / month | \$990 per seat / year |
+| Revont Pro | \$149 per seat / month | \$1,490 per seat / year |
+
 ## Organization-wide usage
 
-Included Call Hours and Revont Credits are pooled across your organization.
+Included Assisted Call Hours, Unassisted Call Hours, and Revont Credits are pooled across your organization.
 
 For example, an organization with **10 Revont seats** receives:
 
 | Allowance | Organization Total |
 | --- | --: |
-| Call Hours | 600 hours / month |
-| Revont Credits | 1,000 credits / month |
+| Revont Assisted Call Hours | 30 hours / day |
+| Revont Credits | 6,000 credits / month |
 
-Individual users are not restricted to exactly 60 hours or 100 credits.
+Individual users are not restricted to exactly one seat's contribution.
 
 If one rep uses more and another uses less, they draw from the same organization-wide allowance.
 
@@ -82,7 +91,7 @@ This keeps your sales team working without requiring admins to constantly redist
 
 ## What happens when you reach your allowance?
 
-Call usage beyond your organization's monthly allowance is automatically billed at your plan's additional call-hour rate.
+Call usage uses a pooled weighted allowance. In the initial rollout, Revont blocks a new call when the organization's allowance is exhausted. There is no automatic call overage charge. Assisted and unassisted calls use the same predictable meter, with unassisted calls weighted lower because live suggestions are disabled.
 
 Revont Credits use **Auto-Recharge** to keep your team's AI tools available without interruption.
 
@@ -94,6 +103,6 @@ Organization admins configure the recharge package and usage threshold.
   </Card>
 
   <Card title="Usage & Auto-Recharge" icon="rotate" href="/pricing/usage">
-    Learn how organization-wide allowances, overages, and automatic credit recharges work.
+    Learn how organization-wide allowances, the call-hour cap, and automatic credit recharges work.
   </Card>
 </CardGroup>
