@@ -13,7 +13,7 @@ keywords:
 icon: "users"
 ---
 
-Directory Sync keeps your Revont organization aligned with the directory your IT team already manages. This guide explains how Directory Sync and SSO fit together, how to invite an IT contact, and how to configure multiple connections when your organization has remaining capacity.
+Directory Sync keeps your Revont organization aligned with the directory your IT team already manages. This guide explains how Directory Sync and SSO fit together, how to invite an IT contact, and how to configure multiple connections when your organization has capacity.
 
 ## What Directory Sync Does
 
@@ -45,9 +45,9 @@ Adding an SSO connection does not consume Directory Sync capacity, and adding a 
 
 ## Invite An IT Contact
 
-The IT contact invitation is organization-level, not tied to one existing connection. Revont includes every purchased identity feature that still has unused capacity in the invitation.
+The IT contact invitation is organization-level, not tied to one existing connection. Revont includes each identity feature that is purchased or already configured, including features whose connection capacity is currently full.
 
-If both SSO and Directory Sync have available capacity, one invitation can cover both features. You do not need a separate email for every connection or directory.
+If both SSO and Directory Sync are purchased or already configured, one invitation can cover both features. You do not need a separate email for every connection or directory.
 
 <Steps>
   <Step title="Open Organization Management">
@@ -57,14 +57,14 @@ If both SSO and Directory Sync have available capacity, one invitation can cover
     Select **Identity Setup** to review SSO and Directory Sync capacity.
   </Step>
   <Step title="Invite the IT contact">
-    Select **Invite IT Contact**. When both features have available capacity, the action is labeled **Invite IT Contact For Both**.
+    Select **Send IT Contact Email**. When both SSO and Directory Sync are included, the action is labeled **Send IT Contact Email For Both**.
   </Step>
   <Step title="Send the setup invitation">
-    Enter the administrator's email address and select **Send Setup Invitation**.
+    Enter the administrator's email address and select **Send IT Contact Email**.
   </Step>
 </Steps>
 
-The recipient receives a guided setup invitation for the features included in the email. Use the email address of the person who manages your identity provider or company directory.
+The recipient receives a guided invitation for the features included in the email and can configure or manage them in the WorkOS Admin Portal. Use the email address of the person who manages your identity provider or company directory.
 
 ## Configure SSO Or Directory Sync
 
@@ -87,17 +87,17 @@ To add another connection or directory, repeat the setup for that feature while 
 
 If the IT contact selects a provider and leaves before finishing setup, return to **Organization Management > Identity Setup** and open **Manage Configuration** for that feature. The connection may remain in a validating or inactive state until the provider configuration is completed.
 
-WorkOS allows only one active Admin Portal setup link for an organization at a time. If Revont reports that an active setup invitation already exists, use the existing invitation or have an organization admin manage the current setup link before sending another one.
+WorkOS may reject a new invitation while an active setup invitation already exists for the organization. If Revont reports that an active setup invitation already exists, use the existing invitation or have an organization admin manage the current setup link before sending another one.
 
 ## Troubleshooting
 
 ### The invite action is unavailable
 
-The organization either has no purchased capacity for the feature or has already used all of its purchased capacity. Review the SSO and Directory Sync counts in **Identity Setup**. If the organization needs another connection, purchase additional capacity or contact Revont Billing.
+The organization has neither purchased capacity nor an existing configured resource for either feature. Review the SSO and Directory Sync counts in **Identity Setup**. If the organization needs another connection, purchase additional capacity or contact Revont Billing.
 
 ### The feature shows “At Capacity”
 
-Every purchased connection slot for that feature is already configured. Remove an unused connection or directory according to your organization’s access policy, or contact Revont Billing if you need more capacity.
+Every purchased connection slot for that feature is already configured. The IT contact email action remains available for the existing feature, but it will not create another setup slot. Remove an unused connection or directory according to your organization’s access policy, or contact Revont Billing if you need more capacity.
 
 ### The connection is still validating
 
