@@ -189,7 +189,8 @@
                 "icon": "users",
                 "pages": [
                   "user-guide/organization-management",
-                  "user-guide/organization-management/manage-users"
+                  "user-guide/organization-management/manage-users",
+                  "user-guide/organization-management/directory-sync"
                 ]
               },
               {

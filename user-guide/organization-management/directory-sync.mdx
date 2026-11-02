@@ -1,0 +1,114 @@
+---
+title: "Directory Sync For Enterprise Access"
+sidebarTitle: "Directory Sync"
+description: "Connect your company directory to Revont, keep user access aligned, and use SSO and Directory Sync together across multiple enterprise connections."
+keywords:
+  - Directory Sync
+  - Single Sign-On
+  - SSO
+  - SCIM
+  - user provisioning
+  - IT contact
+  - WorkOS
+icon: "users"
+---
+
+Directory Sync keeps your Revont organization aligned with the directory your IT team already manages. This guide explains how Directory Sync and SSO fit together, how to invite an IT contact, and how to configure multiple connections when your organization has remaining capacity.
+
+## What Directory Sync Does
+
+Directory Sync is the user lifecycle part of enterprise identity. It allows your IT team to manage users and groups in their directory provider and keep Revont access aligned as people join, change roles, or leave. Revont uses WorkOS to provide the provider-specific setup experience.
+
+Directory Sync commonly uses SCIM, but you do not need to configure a separate SCIM integration in Revont. The setup portal provides the provider-specific instructions and collects the information required to connect the directory.
+
+## SSO And Directory Sync Work Together
+
+| Feature | What It Controls |
+| --- | --- |
+| Single Sign-On | How users authenticate to Revont through an identity provider. |
+| Directory Sync | How users and groups are provisioned and kept aligned with your organization. |
+| Both together | Your IT team manages access in one place, while users sign in through the approved identity provider. |
+
+SSO and Directory Sync are separate features. Selecting an SSO provider does not create a Directory Sync directory, and configuring Directory Sync does not by itself change how users sign in.
+
+## One Organization Can Have Multiple Connections
+
+Revont models one organization with multiple SSO connections and multiple Directory Sync directories when the organization’s purchased capacity allows it.
+
+Revont tracks these resources separately:
+
+- **SSO connections:** Each configured identity provider connection is counted separately.
+- **Directory Sync directories:** Each connected directory provider is counted separately.
+- **Capacity:** SSO capacity applies only to SSO connections. Directory Sync capacity applies only to Directory Sync directories.
+
+Adding an SSO connection does not consume Directory Sync capacity, and adding a Directory Sync directory does not consume SSO capacity. The organization’s Identity Setup view shows the configured resources, their current state, and the remaining capacity for each feature.
+
+## Invite An IT Contact
+
+The IT contact invitation is organization-level, not tied to one existing connection. Revont includes every purchased identity feature that still has unused capacity in the invitation.
+
+If both SSO and Directory Sync have available capacity, one invitation can cover both features. You do not need a separate email for every connection or directory.
+
+<Steps>
+  <Step title="Open Organization Management">
+    Open **Organization Management** from the sidebar.
+  </Step>
+  <Step title="Open Identity Setup">
+    Select **Identity Setup** to review SSO and Directory Sync capacity.
+  </Step>
+  <Step title="Invite the IT contact">
+    Select **Invite IT Contact**. When both features have available capacity, the action is labeled **Invite IT Contact For Both**.
+  </Step>
+  <Step title="Send the setup invitation">
+    Enter the administrator's email address and select **Send Setup Invitation**.
+  </Step>
+</Steps>
+
+The recipient receives a guided setup invitation for the features included in the email. Use the email address of the person who manages your identity provider or company directory.
+
+## Configure SSO Or Directory Sync
+
+After an IT contact opens the setup flow, the provider-specific configuration takes place in the WorkOS Admin Portal.
+
+From **Organization Management > Identity Setup**:
+
+- Select **Open Setup Portal** for a feature that has capacity but no configured connection.
+- Select **Manage Configuration** for a feature that already has one or more configured resources.
+- Review the connection or directory name, provider type, domain, and current state shown for each resource.
+- Complete the provider setup in the portal and return to Revont.
+
+To add another connection or directory, repeat the setup for that feature while capacity remains. The new resource is tracked separately from the existing one.
+
+<Info>
+  WorkOS supports many identity providers, including Okta, Microsoft Entra ID, Google Workspace, and other SAML, OIDC, and SCIM integrations. The setup portal shows the instructions for the provider you select.
+</Info>
+
+## If Setup Is Interrupted
+
+If the IT contact selects a provider and leaves before finishing setup, return to **Organization Management > Identity Setup** and open **Manage Configuration** for that feature. The connection may remain in a validating or inactive state until the provider configuration is completed.
+
+WorkOS allows only one active Admin Portal setup link for an organization at a time. If Revont reports that an active setup invitation already exists, use the existing invitation or have an organization admin manage the current setup link before sending another one.
+
+## Troubleshooting
+
+### The invite action is unavailable
+
+The organization either has no purchased capacity for the feature or has already used all of its purchased capacity. Review the SSO and Directory Sync counts in **Identity Setup**. If the organization needs another connection, purchase additional capacity or contact Revont Billing.
+
+### The feature shows “At Capacity”
+
+Every purchased connection slot for that feature is already configured. Remove an unused connection or directory according to your organization’s access policy, or contact Revont Billing if you need more capacity.
+
+### The connection is still validating
+
+Finish the provider configuration in the setup portal and complete a test sign-in when the provider requires it. Return to **Identity Setup** to review the updated state.
+
+### Directory users are not appearing
+
+Confirm that the directory provider has assigned the appropriate users or groups to Revont. Then review the directory status and user count in the setup portal.
+
+## Learn More
+
+- [Organization Management](/user-guide/organization-management)
+- [WorkOS Directory Sync](https://workos.com/docs/directory-sync)
+- [WorkOS Admin Portal](https://workos.com/docs/admin-portal)
