@@ -44,6 +44,10 @@ A sales rep can use more than one seat's daily contribution when the organizatio
 
 When your organization reaches its included weighted meeting-hour allowance, Revont blocks starting a new meeting until more allowance is available in the next usage period.
 
+If an active meeting crosses the allowance, Revont gives the current meeting a **10-minute grace period** by default. The desktop app shows a red warning while the meeting continues. When the grace period ends, Revont automatically stops listening, transcription, speaker observation, and live suggestions. The external meeting remains open, so the user can finish the conversation in Google Meet, Microsoft Teams, Zoom, or another meeting app. Any finalized transcript captured before the stop is preserved and uploaded normally.
+
+The grace period applies only to active sessions. It does not allow a new meeting to start after the pooled allowance has been exhausted.
+
 The initial rollout does not automatically bill meeting-hour overages. This keeps meeting costs predictable while the pooled meter is validated. Any future Stripe metered-meeting product will be announced and documented before it is enabled.
 
 | Plan | Initial behavior after pooled allowance |
